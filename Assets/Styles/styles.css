@@ -1,6 +1,7 @@
 .table-container {
     position: relative;
     overflow-x: auto;
+    max-width: 100%;
 }
 
 th {
@@ -84,6 +85,9 @@ i {
 }
 
 
+
+
+
 /* font styles */
 /* -----size------- */
 .fs10
@@ -146,6 +150,31 @@ i {
 
 
 
-#resizable-table tbody tr.selected {
-    background-color: #e0e0e0 !important;
+/* Width */
+
+.wd100{
+    width: 100%;
 }
+
+.wd75{
+    width: 75%;
+}
+.wd50{
+    width: 50%;
+}
+.wd30{
+    width: 30%;
+}
+
+.wd25{
+    width: 25%;
+}
+
+.wd20{
+    width: 20%;
+}
+.wd10{
+    width: 10%;
+}
+
+

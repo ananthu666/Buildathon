@@ -1,63 +1,186 @@
+// var employeeData = {
+//     "columns": [
+//         { "key": "id", "header": "ID" },
+//         { "key": "firstName", "header": "First Name" },
+//         { "key": "lastName", "header": "Last Name" },
+//         { "key": "email", "header": "Email" },
+//         { "key": "department", "header": "Department" },
+//         // { "key": "status", "header": "Current Status" }
+//     ],
+//     "status": {
+//     "Active": "green",
+//     "On Leave": "red",
+//     "Inactive": "yellow",
+//     "Terminated": "danger",
+//     "Suspended": "warning"
+// },
+//     "bodyel": [
+//         {
+//             "id": 1,
+//             "firstName": "John",
+//             "lastName": "Smith",
+//             "email": "john.smith@email.com",
+//             "department": "Marketing",
+//             "status": "Active"
+//         },
+//         {
+//             "id": 2,
+//             "firstName": "Sarah",
+//             "lastName": "Johnson",
+//             "email": "sarah.j@email.com",
+//             "department": "Development",
+//             "status": "Active"
+//         },
+//         {
+//             "id": 3,
+//             "firstName": "Michael",
+//             "lastName": "Wilson",
+//             "email": "m.wilson@email.com",
+//             "department": "Sales",
+//             "status": "On Leave"
+//         },
+//         {
+//             "id": 4,
+//             "firstName": "Emily",
+//             "lastName": "Brown",
+//             "email": "emily.b@email.com",
+//             "department": "HR",
+//             "status": "Active"
+//         },
+//         {
+//             "id": 5,
+//             "firstName": "David",
+//             "lastName": "Lee",
+//             "email": "david.lee@email.com",
+//             "department": "Development",
+//             "status": "Inactive"
+//         }
+//     ]
+// };
+ 
+
 var employeeData = {
     "columns": [
         { "key": "id", "header": "ID" },
         { "key": "firstName", "header": "First Name" },
         { "key": "lastName", "header": "Last Name" },
         { "key": "email", "header": "Email" },
-        { "key": "department", "header": "Department" },
-        // { "key": "status", "header": "Current Status" }
+        { "key": "major", "header": "Major" },
+        { "key": "year", "header": "Year" },
+       
+        { "key": "gpa", "header": "GPA" },
+        { "key": "status", "header": "Current Status" }
     ],
     "status": {
-    "Active": "green",
-    "On Leave": "red",
-    "Inactive": "yellow",
-    "Terminated": "danger",
-    "Suspended": "warning"
-},
-    "employees": [
+        "Active": "green",
+        "Graduated": "blue",
+        "On Leave": "red",
+        "Inactive": "yellow"
+    },
+    "bodyel": [
         {
             "id": 1,
-            "firstName": "John",
-            "lastName": "Smith",
-            "email": "john.smith@email.com",
-            "department": "Marketing",
+            "firstName": "Alice",
+            "lastName": "Johnson",
+            "email": "alice.johnson@email.com",
+            "major": "Computer Science",
+            "year": "Sophomore",
+            "gpa": 3.8,
             "status": "Active"
         },
         {
             "id": 2,
-            "firstName": "Sarah",
-            "lastName": "Johnson",
-            "email": "sarah.j@email.com",
-            "department": "Development",
+            "firstName": "Bob",
+            "lastName": "Smith",
+            "email": "bob.smith@email.com",
+            "major": "Mathematics",
+            "year": "Freshman",
+            "gpa": 3.5,
             "status": "Active"
         },
         {
             "id": 3,
-            "firstName": "Michael",
-            "lastName": "Wilson",
-            "email": "m.wilson@email.com",
-            "department": "Sales",
+            "firstName": "Charlie",
+            "lastName": "Davis",
+            "email": "charlie.davis@email.com",
+            "major": "Biology",
+            "year": "Junior",
+            "gpa": 2.9,
             "status": "On Leave"
         },
         {
             "id": 4,
-            "firstName": "Emily",
-            "lastName": "Brown",
-            "email": "emily.b@email.com",
-            "department": "HR",
-            "status": "Active"
+            "firstName": "Diana",
+            "lastName": "Williams",
+            "email": "diana.williams@email.com",
+            "major": "Chemistry",
+            "year": "Senior",
+            "gpa": 3.9,
+            "status": "Graduated"
         },
         {
             "id": 5,
-            "firstName": "David",
-            "lastName": "Lee",
-            "email": "david.lee@email.com",
-            "department": "Development",
+            "firstName": "Ethan",
+            "lastName": "Taylor",
+            "email": "ethan.taylor@email.com",
+            "major": "Physics",
+            "year": "Senior",
+            "gpa": 2.7,
+            "status": "Inactive"
+        },
+        {
+            "id": 6,
+            "firstName": "Fay",
+            "lastName": "Martinez",
+            "email": "fay.martinez@email.com",
+            "major": "Engineering",
+            "year": "Freshman",
+            "gpa": 3.2,
+            "status": "Active"
+        },
+        {
+            "id": 7,
+            "firstName": "George",
+            "lastName": "Brown",
+            "email": "george.brown@email.com",
+            "major": "Psychology",
+            "year": "Sophomore",
+            "gpa": 3.6,
+            "status": "Active"
+        },
+        {
+            "id": 8,
+            "firstName": "Hannah",
+            "lastName": "Garcia",
+            "email": "hannah.garcia@email.com",
+            "major": "English Literature",
+            "year": "Junior",
+            "gpa": 3.1,
+            "status": "On Leave"
+        },
+        {
+            "id": 9,
+            "firstName": "Isaac",
+            "lastName": "Lopez",
+            "email": "isaac.lopez@email.com",
+            "major": "History",
+            "year": "Senior",
+            "gpa": 2.8,
+            "status": "Graduated"
+        },
+        {
+            "id": 10,
+            "firstName": "Jack",
+            "lastName": "Martinez",
+            "email": "jack.martinez@email.com",
+            "major": "Sociology",
+            "year": "Senior",
+            "gpa": 3.4,
             "status": "Inactive"
         }
     ]
 };
- 
+
 const table = document.getElementById('resizable-table');
 const tableContainer = document.querySelector('.table-container');
 const resizeIndicator = document.querySelector('.resize-indicator');
@@ -75,7 +198,7 @@ let employeeId = 1;
  
  
 // Function to render the employee table
-function renderEmployeeTable(data) {
+function renderEmployeeTable(data,status="Current status") {
     const tableHead = document.querySelector('thead');
     const headerRow = document.createElement('tr');
  
@@ -88,7 +211,8 @@ function renderEmployeeTable(data) {
         const th = document.createElement('th');
         th.setAttribute('scope', 'col');
         th.textContent = column.header;
- 
+        th.style.position = 'relative'; // Ensure icons are positioned relative to th
+        th.style.paddingRight = '90px';
         const resizer = document.createElement('div');
         resizer.className = 'resizer';
         resizer.id = `resizer-${index}`;
@@ -163,12 +287,22 @@ function renderEmployeeTable(data) {
     const tableBody = document.querySelector('tbody');
     tableBody.innerHTML = '';
  
-    data.employees.forEach(employee => {
-        const statusClass = {
-            'Active': 'bg-success',
-            'Inactive': 'bg-danger',
-            'On Leave': 'bg-warning text-dark'
-        }[employee.status];
+    data.bodyel.forEach(employee => {
+        // const statusClass = {
+        //     'Active': 'bg-success',
+        //     'Inactive': 'bg-danger',
+        //     'On Leave': 'bg-warning text-dark'
+        // }[status];
+
+    //     "status": {
+    //     "Active": "green",
+    //     "Graduated": "blue",
+    //     "On Leave": "red",
+    //     "Inactive": "yellow"
+    // },
+
+
+
  
         const row = document.createElement('tr');
  
@@ -192,8 +326,9 @@ function renderEmployeeTable(data) {
             cellContent.className = 'cell-content';
             cellContent.addEventListener('click', () => editCell(cellContent, column.key, employee));
  
-            if (column.key === 'status') {
-                cell.innerHTML = `<span class="badge ${statusClass}">${employee[column.key]}</span>`;
+            if (column.key === status) {
+                cell.innerHTML = `<span class="badge" style="background-color:${employeeData.status[employeeData.bodyel[index].status]}">${employeeData.bodyel[index][column.key]}</span>`;
+
             } else {
                 cell.appendChild(cellContent);
             }
@@ -205,12 +340,12 @@ function renderEmployeeTable(data) {
     });
  
     // Update employeeId to the next available ID
-    employeeId = data.employees.length > 0 ? Math.max(...data.employees.map(emp => emp.id)) + 1 : 1;
+    employeeId = data.bodyel.length > 0 ? Math.max(...data.bodyel.map(emp => emp.id)) + 1 : 1;
 }
 
 function handleFilter(column) {
     function getColumnData(columnKey) {
-        return [...new Set(employeeData.employees.map(emp => emp[columnKey]))]; // Ensure unique values
+        return [...new Set(employeeData.bodyel.map(emp => emp[columnKey]))]; // Ensure unique values
     }
 
     const columnKey = column.key;
@@ -263,7 +398,7 @@ function reloaddata(data) {
     const tableBody = document.querySelector('tbody');
     tableBody.innerHTML = '';
  
-    data.employees.forEach(employee => {
+    data.bodyel.forEach(employee => {
         const statusClass = {
             'Active': 'bg-success',
             'Inactive': 'bg-danger',
@@ -312,7 +447,7 @@ function handleSort(column) {
     const key = column.key;
     const direction = column.sortState;
  
-    employeeData.employees.sort((a, b) => {
+    employeeData.bodyel.sort((a, b) => {
         const aValue = a[key];
         const bValue = b[key];
  
@@ -379,6 +514,8 @@ function addEmployee() {
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
     checkbox.className = 'select-row';
+    checkbox.checked = true; // Set the checkbox to be checked by default
+    
     selectCell.appendChild(checkbox);
     newRow.appendChild(selectCell);
     
@@ -405,7 +542,7 @@ function addEmployee() {
  
 // Initial rendering of the employee table
 document.addEventListener('DOMContentLoaded', () => {
-    renderEmployeeTable(employeeData);
+    renderEmployeeTable(employeeData,status="Current status");
     autoFitAll();
 });
  
@@ -508,22 +645,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function deleteSelected() {
     const checkboxes = document.querySelectorAll('.select-row');
-    const selectedIds = [];
-
     
-    checkboxes.forEach((checkbox, index) => {
-        if (checkbox.checked) {
-            const row = checkbox.closest('tr');
-            const idCell = row.querySelector('th'); // Assuming ID is in the first column
-            selectedIds.push(parseInt(idCell.textContent));
-        }
+    // Check if any checkboxes are checked
+    const checkedBoxes = Array.from(checkboxes).filter(checkbox => checkbox.checked);
+    
+    if (checkedBoxes.length === 0) {
+        // alert('No rows selected for deletion');
+        return;
+    }
+    toggleButtons('delete');
+    const selectedIds = checkedBoxes.map(checkbox => {
+        const row = checkbox.closest('tr');
+        const idCell = row.querySelector('th'); // Assumes ID is in the first column
+        return parseInt(idCell.textContent);
     });
 
-    
-    employeeData.employees = employeeData.employees.filter(employee => !selectedIds.includes(employee.id));
+    // Filter out employees with selected IDs
+    employeeData.bodyel = employeeData.bodyel.filter(
+        employee => !selectedIds.includes(employee.id)
+    );
     
     // Re-render the table
     renderEmployeeTable(employeeData);
+    
+    // Reset button states
+    toggleButtons('delete');
 }
 function toggleButtons(action) {
     const addButton = document.getElementById('addButton');
@@ -594,7 +740,7 @@ document.getElementById('updateButton').addEventListener('click', () => {
 
 document.getElementById('deleteButton').addEventListener('click', () => {
     deleteSelected();
-    toggleButtons('delete');
+    
 }
 );
 
@@ -612,8 +758,8 @@ document.getElementById('cancelButton').addEventListener('click', () => {
             cellContent.innerHTML = input.value;
         }
     });
-
     editedCells = []; // Clear the edited cells
     updateButtonState(); // Disable the "Update" button
+    deleteSelected();
     toggleButtons('cancel');
 });
