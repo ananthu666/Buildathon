@@ -115,11 +115,9 @@ function renderEmployeeTable(data) {
         filterIcon.className = 'bi bi-funnel';
         filterIcon.style.cursor = 'pointer';
         filterIcon.style.marginLeft = '5px'; // Space between icons
-        filterIcon.onclick = () => {
-            const filterModal = new bootstrap.Modal(document.getElementById('filterModal'));
-            console.log("=====s",filterModal);
-            filterModal.show();
-        };
+        filterIcon.onclick = () => handleFilter(column);
+        
+
         document.getElementById('close_modal').addEventListener('click', () => {
             const filterModal = bootstrap.Modal.getInstance(document.getElementById('filterModal'));
             filterModal.hide();
@@ -210,6 +208,55 @@ function renderEmployeeTable(data) {
     employeeId = data.employees.length > 0 ? Math.max(...data.employees.map(emp => emp.id)) + 1 : 1;
 }
 
+function handleFilter(column) {
+    function getColumnData(columnKey) {
+        return [...new Set(employeeData.employees.map(emp => emp[columnKey]))]; // Ensure unique values
+    }
+
+    const columnKey = column.key;
+    const columnData = getColumnData(columnKey);
+    const modalBody = document.querySelector(".modal-body");
+    modalBody.innerHTML = "";
+
+    const selectAllDiv = document.createElement("div");
+    selectAllDiv.classList.add("form-check");
+
+    selectAllDiv.innerHTML = `
+        <input class="form-check-input" type="checkbox" id="selectAllCheckbox">
+        <label class="form-check-label fw-bold" for="selectAllCheckbox">Select All</label>
+        <hr>
+    `;
+
+    modalBody.appendChild(selectAllDiv);
+
+    columnData.forEach(item => {
+        if (item === null || item === undefined) return; // Skip invalid values
+
+        const safeItem = String(item); // Convert to string
+        // const safeId = `checkbox_${safeItem.replace(/\s+/g, "_")}`; // Safe ID
+
+        const d = document.createElement("div");
+        d.classList.add("form-check");
+
+        d.innerHTML = `
+            <input class="form-check-input item-checkbox" type="checkbox" id="${safeItem}" value="${safeItem}">
+            <label class="form-check-label" for="${safeItem}">${safeItem}</label>
+        `;
+
+        modalBody.appendChild(d);
+    });
+
+    // Show modal
+    const filterModal = new bootstrap.Modal(document.getElementById("filterModal"));
+    filterModal.show();
+
+    // "Select All" functionality
+    document.getElementById("selectAllCheckbox").addEventListener("change", function () {
+        document.querySelectorAll(".item-checkbox").forEach(checkbox => {
+            checkbox.checked = this.checked;
+        });
+    });
+}
 
 // function to reload data after sort
 function reloaddata(data) {
