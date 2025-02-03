@@ -1,4 +1,4 @@
-const employeeData = {
+var employeeData = {
     "columns": [
         { "key": "id", "header": "ID" },
         { "key": "firstName", "header": "First Name" },
@@ -162,7 +162,62 @@ function renderEmployeeTable(data) {
         resizer.id = `resizer-${index}`;
  
         th.appendChild(resizer);
-        headerRow.appendChild(th);
+        
+        // icons from b
+        const iconContainer = document.createElement('div');
+        iconContainer.className = 'icon-container';
+        iconContainer.style.position = 'absolute';
+        iconContainer.style.top = '50%';
+        iconContainer.style.right = '5px';  // Adjust as needed
+        iconContainer.style.transform = 'translateY(-50%)';
+        iconContainer.style.display = 'flex';
+        iconContainer.style.alignItems = 'center';
+ 
+        const sortIcon = document.createElement('i');
+        sortIcon.className = 'bi bi-arrow-down';
+        sortIcon.style.cursor = 'pointer';
+        sortIcon.style.marginLeft = '5px'; // Space between icons
+        column.sortDirection = 'asc';
+ 
+        const filterIcon = document.createElement('i');
+        filterIcon.className = 'bi bi-funnel';
+        filterIcon.style.cursor = 'pointer';
+        filterIcon.style.marginLeft = '5px'; // Space between icons
+        filterIcon.onclick = (event) => {
+            $('#filterModal').modal('show'); // Use jQuery to show the modal
+        };
+        // document.getElementById('close_modal').onclick = () => {
+           
+        //     $('#filterModal').modal('hide');
+        // };
+        // document.getElementById('applyFilter').onclick = () => {
+           
+        //     $('#filterModal').modal('hide');
+        // };
+ 
+        sortIcon.onclick = () => {
+            if (column.sortState === 'none' || column.sortState === 'desc') {
+                column.sortState = 'asc';
+                sortIcon.className = 'bi bi-arrow-up';
+            } else {
+                column.sortState = 'desc';
+                sortIcon.className = 'bi bi-arrow-down';
+            }
+ 
+            handleSort(column);
+        };
+ 
+        filterIcon.onclick = () => handleFilter(column); // Implement handleFilter
+ 
+        iconContainer.appendChild(sortIcon);
+        iconContainer.appendChild(filterIcon);  // Add both icons
+ 
+ 
+ 
+
+         // Append the icon container to the th
+         th.appendChild(iconContainer);
+         headerRow.appendChild(th);
  
         // Add resize event listeners
         resizer.addEventListener('mousedown', initResize);
@@ -219,7 +274,81 @@ function renderEmployeeTable(data) {
     // Update employeeId to the next available ID
     employeeId = data.employees.length > 0 ? Math.max(...data.employees.map(emp => emp.id)) + 1 : 1;
 }
+
+
+// function to reload data after sort
+function reloaddata(data) {
+    const tableBody = document.querySelector('tbody');
+    tableBody.innerHTML = '';
  
+    data.employees.forEach(employee => {
+        const statusClass = {
+            'Active': 'bg-success',
+            'Inactive': 'bg-danger',
+            'On Leave': 'bg-warning text-dark'
+        }[employee.status];
+ 
+        const row = document.createElement('tr');
+ 
+        // Add checkbox for selection
+        const selectCell = document.createElement('td');
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.className = 'select-row';
+        selectCell.appendChild(checkbox);
+        row.appendChild(selectCell);
+ 
+        data.columns.forEach(column => {
+            const cell = column.key === 'id' ? document.createElement('th') : document.createElement('td');
+            if (column.key === 'id') {
+                cell.setAttribute('scope', 'row');
+            }
+ 
+            // Create editable cell
+            const cellContent = document.createElement('div');
+            cellContent.textContent = employee[column.key];
+            cellContent.className = 'cell-content';
+            cellContent.addEventListener('click', () => editCell(cellContent, column.key, employee));
+ 
+            if (column.key === 'status') {
+                cell.innerHTML = `<span class="badge ${statusClass}">${employee[column.key]}</span>`;
+            } else {
+                cell.appendChild(cellContent);
+            }
+ 
+            row.appendChild(cell);
+        });
+ 
+        tableBody.appendChild(row);
+    });
+ 
+}
+ 
+//  function to sort column 
+
+function handleSort(column) {
+    const key = column.key;
+    const direction = column.sortState;
+ 
+    employeeData.employees.sort((a, b) => {
+        const aValue = a[key];
+        const bValue = b[key];
+ 
+        let comparisonResult;
+        if (typeof aValue === 'string') {
+            comparisonResult = aValue.localeCompare(bValue);
+        } else {
+            comparisonResult = aValue - bValue;
+        }
+ 
+        return direction === 'asc' ? comparisonResult : -comparisonResult;
+    });
+ 
+    // console.log(employeeData.employees);
+    reloaddata(employeeData);
+}
+ 
+
 // Function to edit a cell
 function editCell(cellContent, key, employee) {
     if(editBtn.disabled == true )

@@ -60,3 +60,25 @@ td {
 .bg_gray{
     background:red;
 }
+
+
+
+.icon-container {
+    /* background-color: red; */
+    right: 10px;
+    top: 0;
+    height: 100%;
+    min-width: 50px;
+    /* max-width: ; */
+    position: absolute;
+}
+ 
+ 
+ 
+ 
+ 
+i {
+    width: 20px;
+    /* position: absolute; */
+    left: 0;
+}
