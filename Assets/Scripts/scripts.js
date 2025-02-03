@@ -286,6 +286,10 @@ function handleSort(column) {
 
 // Function to edit a cell
 function editCell(cellContent, key, employee) {
+    // if the edit button not enabled dot edit
+    if (!document.getElementById('editButton').disabled) {
+       return;
+    }
     const input = document.createElement('input');
     input.type = 'text'; // Customize input type as needed
     input.value = cellContent.textContent.trim();
@@ -537,4 +541,32 @@ document.getElementById('updateButton').addEventListener('click', () => {
 
     editedCells = []; // Clear the edited cells after update
     updateButtonState(); // Disable the "Update" button
+    // toggleButtons('update');
+});
+
+
+document.getElementById('deleteButton').addEventListener('click', () => {
+    deleteSelected();
+    toggleButtons('delete');
+}
+);
+
+document.getElementById('editButton').addEventListener('click', () => {
+    toggleButtons('edit');
+});
+
+
+document.getElementById('cancelButton').addEventListener('click', () => {
+    editedCells.forEach(({ cellContent, input }) => {
+        // if input value is empty user prevous value
+        if (input.value.trim() === "") {
+            cellContent.innerHTML = cellContent.textContent;
+        } else {
+            cellContent.innerHTML = input.value;
+        }
+    });
+
+    editedCells = []; // Clear the edited cells
+    updateButtonState(); // Disable the "Update" button
+    toggleButtons('cancel');
 });
