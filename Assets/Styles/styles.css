@@ -9,6 +9,7 @@ th {
     overflow: hidden;
     text-overflow: ellipsis;
     min-width: 100px;
+    
 }
 
 td {
@@ -31,7 +32,7 @@ td {
 
 .resizer:hover,
 .resizing .resizer {
-    background: rgba(0, 123, 255, 0.5);
+    background: rgba(2, 6, 10, 0.5);
 }
 
 .resize-indicator {
@@ -53,4 +54,9 @@ td {
 .table-responsive {
     overflow-x: auto;
     position: relative;
+}
+
+
+.bg_gray{
+    background:red;
 }

@@ -58,7 +58,7 @@ let isResizing = false;
 let currentColumn = null;
 let startX, startWidth;
 
-function renderEmployeeTable(data) {
+function renderEmployeeTable(data, statusKey = "status") {
     const tableHead = document.querySelector('thead');
     const headerRow = document.createElement('tr');
    
@@ -90,8 +90,7 @@ function renderEmployeeTable(data) {
             'Active': 'bg-success',
             'Inactive': 'bg-danger',
             'On Leave': 'bg-warning text-dark'
-        }[employee.status];
-
+        }[employee[statusKey]]; 
         const row = document.createElement('tr');
        
         data.columns.forEach(column => {
@@ -100,7 +99,7 @@ function renderEmployeeTable(data) {
                 cell.setAttribute('scope', 'row');
             }
            
-            if (column.key === 'status') {
+            if (column.key === statusKey) {
                 cell.innerHTML = `<span class="badge ${statusClass}">${employee[column.key]}</span>`;
             } else {
                 cell.textContent = employee[column.key];
