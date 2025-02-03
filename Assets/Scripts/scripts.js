@@ -63,77 +63,9 @@ const tableContainer = document.querySelector('.table-container');
 const resizeIndicator = document.querySelector('.resize-indicator');
 
 
-const addBtn = document.querySelector('[data-action="add"]');
-const editBtn = document.querySelector('[data-action="edit"]');
-const deleteBtn = document.querySelector('[data-action="delete"]');
-const updateBtn = document.querySelector('[data-action="update"]');
-const cancelBtn = document.querySelector('[data-action="cancel"]');
 
-function enableActionButtons() {
-    updateBtn.disabled = false;
-    cancelBtn.disabled = false;
-}
- 
-// Function to disable Update and Cancel buttons
-function disableActionButtons() {
-    updateBtn.disabled = true;
-    cancelBtn.disabled = true;
-}
- 
-// Function to disable Add, Edit, and Delete buttons
-function disableMainButtons() {
-    addBtn.disabled = true;
-    editBtn.disabled = true;
-    deleteBtn.disabled = true;
-}
- 
-// Function to enable Add, Edit, and Delete buttons
-function enableMainButtons() {
-    addBtn.disabled = false;
-    editBtn.disabled = false;
-    deleteBtn.disabled = false;
-}
 
-// Add click event listeners to the buttons
-addBtn.addEventListener('click', () => {
-    addBtn.disabled = false;
-    editBtn.disabled = true;
-    deleteBtn.disabled = true;
-    enableActionButtons();
-    addEmployee();
-    
-});
  
-editBtn.addEventListener('click', () => {
-    addBtn.disabled = true;
-    editBtn.disabled = false;
-    deleteBtn.disabled = true;
-    enableActionButtons();
-
-    
-});
- 
-deleteBtn.addEventListener('click', () => {
-    addBtn.disabled = true;
-    editBtn.disabled = true;
-    deleteBtn.disabled = false;
-    enableActionButtons();
-    deleteSelected();
-    
-});
- 
-// Optional: Disable action buttons when Update or Cancel is clicked
-updateBtn.addEventListener('click', () => {
-    enableMainButtons(); // Enable main buttons when updating
-    disableActionButtons();
-    // Your update functionality here
-});
- 
-cancelBtn.addEventListener('click', () => {
-    enableMainButtons(); // Enable main buttons when canceling
-    disableActionButtons();
-    // Your cancel functionality here
-});
  
 let isResizing = false;
 let currentColumn = null;
@@ -354,18 +286,15 @@ function handleSort(column) {
 
 // Function to edit a cell
 function editCell(cellContent, key, employee) {
-    if(editBtn.disabled == true )
-        return;
     const input = document.createElement('input');
-    input.type = key === 'status' ? 'text' : 'text'; // You can customize input types based on the key
-    input.value = cellContent.textContent;
+    input.type = 'text'; // Customize input type as needed
+    input.value = cellContent.textContent.trim();
     cellContent.innerHTML = ''; // Clear the cell content
     cellContent.appendChild(input);
-    if(input.value=='')
-        input.value=employee[key]
     input.focus();
- 
-    input.addEventListener('blur', () => saveEdit(cellContent, input.value, key, employee));
+    editedCells.push({ cellContent, input, key, employee }); // Track the edited cell
+
+    // Listen for "Enter" key to save changes
     input.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
             saveEdit(cellContent, input.value, key, employee);
@@ -375,11 +304,20 @@ function editCell(cellContent, key, employee) {
  
 // Function to save the edited value
 function saveEdit(cellContent, newValue, key, employee) {
-    if(newValue=="")return;
+    if (newValue.trim() === "") return; // Do not save empty values
     cellContent.innerHTML = newValue; // Update the cell content
     employee[key] = newValue; // Update the employee data
+    toggleButtons('update');
 }
  
+function updateButtonState() {
+    const updateButton = document.getElementById('updateButton');
+    if (editedCells.length > 0) {
+        updateButton.disabled = false; // Enable "Update" button if any cells are edited
+    } else {
+        updateButton.disabled = true; // Disable it if no cells are edited
+    }
+}
 function addEmployee() {
 
     const tableBody = document.querySelector('#resizable-table tbody');
@@ -536,3 +474,67 @@ function deleteSelected() {
     // Re-render the table
     renderEmployeeTable(employeeData);
 }
+function toggleButtons(action) {
+    const addButton = document.getElementById('addButton');
+    const editButton = document.getElementById('editButton');
+    const deleteButton = document.getElementById('deleteButton');
+    const updateButton = document.getElementById('updateButton');
+    const cancelButton = document.getElementById('cancelButton');
+
+    switch (action) {
+        case 'add':
+            addButton.disabled = true;
+            editButton.disabled = true;
+            deleteButton.disabled = true;
+            updateButton.disabled = false;
+            cancelButton.disabled = false;
+            break;
+        case 'edit':
+            addButton.disabled = true;
+            editButton.disabled = true;
+            deleteButton.disabled = true;
+            updateButton.disabled = false;
+            cancelButton.disabled = false;
+            break;
+        case 'delete':
+            addButton.disabled = true;
+            editButton.disabled = true;
+            deleteButton.disabled = true;
+            updateButton.disabled = false;
+            cancelButton.disabled = false;
+            break;
+        case 'cancel':
+            addButton.disabled = false;
+            editButton.disabled = false;
+            deleteButton.disabled = false;
+            updateButton.disabled = true;
+            cancelButton.disabled = true;
+            break;
+        case 'update':
+            addButton.disabled = false;
+            editButton.disabled = false;
+            deleteButton.disabled = false;
+            updateButton.disabled = true;
+            cancelButton.disabled = true;
+            break;
+    }
+}
+
+let editedCells = [];
+
+document.getElementById('addButton').addEventListener('click', function () {
+    addEmployee();
+    
+    
+    toggleButtons('add'); // Disable Add, Edit, Delete and enable Update, Cancel
+});
+
+document.getElementById('updateButton').addEventListener('click', () => {
+    editedCells.forEach(({ cellContent, input, key, employee }) => {
+        const newValue = input.value;
+        saveEdit(cellContent, newValue, key, employee);
+    });
+
+    editedCells = []; // Clear the edited cells after update
+    updateButtonState(); // Disable the "Update" button
+});

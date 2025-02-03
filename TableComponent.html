@@ -18,30 +18,31 @@
             <button class="btn btn-warning" onclick="editSelected()">Edit Selected</button>
             <button class="btn btn-danger" onclick="deleteSelected()">Delete Selected</button> -->
         </div>
-        <div class="bg-white shadow-sm rounded p-1 mb-3">            
-            <div class="d-flex align-items-center gap-3">                
-                <button class="btn d-flex align-items-center gap-2  border-0" data-action="add">                    
-                    <i class="bi bi-plus-lg"></i>                    
-                    Add                
-                </button>                
-                <button class="btn d-flex align-items-center gap-2  border-0" data-action="edit">                    
-                    <i class="bi bi-pencil"></i>                    
-                    Edit                
-                </button>                
-                <button class="btn d-flex align-items-center gap-2  border-0" data-action="delete">                    
-                    <i class="bi bi-trash"></i>                    
-                    Delete                
-                </button>                                
-                <button class="btn d-flex align-items-center gap-2  border-0" data-action="update" disabled>                    
-                    <i class="bi bi-arrow-clockwise"></i>                    
-                    Update                
-                </button>                
-                <button class="btn d-flex align-items-center gap-2  border-0" data-action="cancel" disabled>                    
-                    <i class="bi bi-x-lg"></i>                    
-                    Cancel                
-                </button>            
-            </div>        
-        </div>
+        <div class="bg-white shadow-sm rounded p-1 mb-3">
+          <div class="d-flex align-items-center gap-3">
+              <button class="btn d-flex align-items-center gap-2 border-0" id="addButton">
+                  <i class="bi bi-plus-lg"></i>
+                  Add
+              </button>
+              <button class="btn d-flex align-items-center gap-2 border-0" id="editButton">
+                  <i class="bi bi-pencil"></i>
+                  Edit
+              </button>
+              <button class="btn d-flex align-items-center gap-2 border-0" id="deleteButton" >
+                  <i class="bi bi-trash"></i>
+                  Delete
+              </button>
+              <button class="btn d-flex align-items-center gap-2 border-0" id="updateButton" disabled>
+                  <i class="bi bi-arrow-clockwise"></i>
+                  Update
+              </button>
+              <button class="btn d-flex align-items-center gap-2 border-0" id="cancelButton" disabled>
+                  <i class="bi bi-x-lg"></i>
+                  Cancel
+              </button>
+          </div>
+      </div>
+      
  
         <div class="table-container">
             <div class="resize-indicator"></div>
@@ -55,12 +56,19 @@
             </div>
         </div>
     </div>
-    <div class="modal fade " id="filterModal" tabindex="-1" role="dialog" aria-labelledby="filterModalLabel" aria-hidden="true" >
+    <div class="modal fade " id="filterModal" tabindex="-1" role="dialog" aria-labelledby="filterModalLabel" aria-hidden="true" 
+    
+    
+    >
       <div class="modal-dialog" role="document">
         <div class="modal-content">
-          <div class="modal-header d-flex flex-column align-items-start">
-            <i class="bi bi-arrow-up"> A Z</i>
-            <i class="bi bi-arrow-down"></i>
+          <div class="modal-header d-flex flex-column align-items-start ">
+            <i class="bi bi-arrow-up d-flex align-items-center fw700 fs25 cursorp"  > <span class="fs10 fw700  justify-around" onclick="sortData('asc')">
+              Z A
+            </span> <span class="fs10 ml10" >Desc</span></i>
+            <i class="bi bi-arrow-down d-flex align-items-center fw700 fs25  cursorp" > <span class="fs10 fw700  justify-around" >
+              A Z
+            </span>             </span> <span class="fs10 ml10" >Asc</span></i>
             
           </div>
           <div class="modal-body">
