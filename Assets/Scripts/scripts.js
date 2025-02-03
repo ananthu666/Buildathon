@@ -5,8 +5,15 @@ const employeeData = {
         { "key": "lastName", "header": "Last Name" },
         { "key": "email", "header": "Email" },
         { "key": "department", "header": "Department" },
-        { "key": "status", "header": "Current Status" }
+        // { "key": "status", "header": "Current Status" }
     ],
+    "status": {
+    "Active": "green",
+    "On Leave": "red",
+    "Inactive": "yellow",
+    "Terminated": "danger",
+    "Suspended": "warning"
+},
     "employees": [
         {
             "id": 1,
@@ -54,6 +61,79 @@ const employeeData = {
 const table = document.getElementById('resizable-table');
 const tableContainer = document.querySelector('.table-container');
 const resizeIndicator = document.querySelector('.resize-indicator');
+
+
+const addBtn = document.querySelector('[data-action="add"]');
+const editBtn = document.querySelector('[data-action="edit"]');
+const deleteBtn = document.querySelector('[data-action="delete"]');
+const updateBtn = document.querySelector('[data-action="update"]');
+const cancelBtn = document.querySelector('[data-action="cancel"]');
+
+function enableActionButtons() {
+    updateBtn.disabled = false;
+    cancelBtn.disabled = false;
+}
+ 
+// Function to disable Update and Cancel buttons
+function disableActionButtons() {
+    updateBtn.disabled = true;
+    cancelBtn.disabled = true;
+}
+ 
+// Function to disable Add, Edit, and Delete buttons
+function disableMainButtons() {
+    addBtn.disabled = true;
+    editBtn.disabled = true;
+    deleteBtn.disabled = true;
+}
+ 
+// Function to enable Add, Edit, and Delete buttons
+function enableMainButtons() {
+    addBtn.disabled = false;
+    editBtn.disabled = false;
+    deleteBtn.disabled = false;
+}
+
+// Add click event listeners to the buttons
+addBtn.addEventListener('click', () => {
+    addBtn.disabled = false;
+    editBtn.disabled = true;
+    deleteBtn.disabled = true;
+    enableActionButtons();
+    addEmployee();
+    
+});
+ 
+editBtn.addEventListener('click', () => {
+    addBtn.disabled = true;
+    editBtn.disabled = false;
+    deleteBtn.disabled = true;
+    enableActionButtons();
+
+    
+});
+ 
+deleteBtn.addEventListener('click', () => {
+    addBtn.disabled = true;
+    editBtn.disabled = true;
+    deleteBtn.disabled = false;
+    enableActionButtons();
+    deleteSelected();
+    
+});
+ 
+// Optional: Disable action buttons when Update or Cancel is clicked
+updateBtn.addEventListener('click', () => {
+    enableMainButtons(); // Enable main buttons when updating
+    disableActionButtons();
+    // Your update functionality here
+});
+ 
+cancelBtn.addEventListener('click', () => {
+    enableMainButtons(); // Enable main buttons when canceling
+    disableActionButtons();
+    // Your cancel functionality here
+});
  
 let isResizing = false;
 let currentColumn = null;
@@ -142,6 +222,8 @@ function renderEmployeeTable(data) {
  
 // Function to edit a cell
 function editCell(cellContent, key, employee) {
+    if(editBtn.disabled == true )
+        return;
     const input = document.createElement('input');
     input.type = key === 'status' ? 'text' : 'text'; // You can customize input types based on the key
     input.value = cellContent.textContent;
@@ -167,9 +249,10 @@ function saveEdit(cellContent, newValue, key, employee) {
 }
  
 function addEmployee() {
+
     const tableBody = document.querySelector('#resizable-table tbody');
     const newRow = document.createElement('tr');
- 
+    
     // Add checkbox for selection
     const selectCell = document.createElement('td');
     const checkbox = document.createElement('input');
@@ -177,34 +260,25 @@ function addEmployee() {
     checkbox.className = 'select-row';
     selectCell.appendChild(checkbox);
     newRow.appendChild(selectCell);
- 
-    // newRow.innerHTML += `
-    //     <td>${employeeId++}</td> <!-- Auto-increment ID -->
-    //     <td><div class="cell-content" onclick="editCell(this, 'firstName', {})">Customer Name</div></td>
-    //     <td><div class="cell-content" onclick="editCell(this, 'lastName', {})">Last Name</div></td>
-    //     <td><div class="cell-content" onclick="editCell(this, 'email', {})">Email Address</div></td>
-    //     <td><div class="cell-content" onclick="editCell(this, 'department', {})">Department</div></td>
-    //     <td><div class="cell-content" onclick="editCell(this, 'status', {})">Current Status</div></td>
-    // `;
- 
-    newRow.innerHTML +=`
-        <tr>
-           
-            <td>${employeeId++}</td>
-    `;
- 
+    
+    // Add ID cell
+    const idCell = document.createElement('th');
+    idCell.textContent = employeeId++;
+    newRow.appendChild(idCell);
+    
+    // Add other columns
     employeeData.columns.forEach((column, index) => {
-        if (index > 0) { // Skip the first column
-            newRow.innerHTML += `
-                <td>
-                    <div class="cell-content" onclick="editCell(this, ${column.key}, {})">${column.header || ' '}</div>
-                </td>
-            `;
+        if (index > 0) { // Skip the first column (ID)
+            const cell = document.createElement('td');
+            const div = document.createElement('div');
+            div.className = 'cell-content';
+            div.setAttribute('onclick', `editCell(this, '${column.key}', {})`);
+            div.textContent = column.header || ' ';
+            cell.appendChild(div);
+            newRow.appendChild(cell);
         }
     });
- 
-    newRow.innerHTML  += `</tr>`;
- 
+    
     tableBody.appendChild(newRow);
 }
  
@@ -309,3 +383,24 @@ document.addEventListener('DOMContentLoaded', () => {
     renderEmployeeTable(employeeData);
     autoFitAll();
 });
+
+
+function deleteSelected() {
+    const checkboxes = document.querySelectorAll('.select-row');
+    const selectedIds = [];
+
+    
+    checkboxes.forEach((checkbox, index) => {
+        if (checkbox.checked) {
+            const row = checkbox.closest('tr');
+            const idCell = row.querySelector('th'); // Assuming ID is in the first column
+            selectedIds.push(parseInt(idCell.textContent));
+        }
+    });
+
+    
+    employeeData.employees = employeeData.employees.filter(employee => !selectedIds.includes(employee.id));
+    
+    // Re-render the table
+    renderEmployeeTable(employeeData);
+}
