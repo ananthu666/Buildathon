@@ -1,15 +1,30 @@
 .table-container {
     position: relative;
+    
+}
+.table-responsive {
+    position: relative;
     overflow-x: auto;
+    max-height: 80vh;
     max-width: 100%;
 }
 
-th {
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    table-layout: fixed;
     position: relative;
+}
+
+th {
+    position: sticky;
+    top: 0;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     min-width: 100px;
+    z-index: 2;
     
 }
 
@@ -17,6 +32,12 @@ td {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    
+}
+
+tbody{
+    position: relative;
+    z-index: 1;
 }
 
 .resizer {
@@ -40,11 +61,15 @@ td {
     position: absolute;
     top: 0;
     width: 2px;
-    height: 100%;
-    background: #007bff;
+    height: 97%;
+    background: gray;
     display: none;
     z-index: 1000;
     pointer-events: none;
+}
+
+.collist{
+    background-color: red;
 }
 
 .controls {
@@ -176,5 +201,4 @@ i {
 .wd10{
     width: 10%;
 }
-
 

@@ -1,71 +1,71 @@
-// var employeeData = {
-//     "columns": [
-//         { "key": "id", "header": "ID" },
-//         { "key": "firstName", "header": "First Name" },
-//         { "key": "lastName", "header": "Last Name" },
-//         { "key": "email", "header": "Email" },
-//         { "key": "department", "header": "Department" },
-//         // { "key": "status", "header": "Current Status" }
-//     ],
-//     "status": {
-//     "Active": "green",
-//     "On Leave": "red",
-//     "Inactive": "yellow",
-//     "Terminated": "danger",
-//     "Suspended": "warning"
-// },
-//     "bodyel": [
-//         {
-//             "id": 1,
-//             "firstName": "John",
-//             "lastName": "Smith",
-//             "email": "john.smith@email.com",
-//             "department": "Marketing",
-//             "status": "Active"
-//         },
-//         {
-//             "id": 2,
-//             "firstName": "Sarah",
-//             "lastName": "Johnson",
-//             "email": "sarah.j@email.com",
-//             "department": "Development",
-//             "status": "Active"
-//         },
-//         {
-//             "id": 3,
-//             "firstName": "Michael",
-//             "lastName": "Wilson",
-//             "email": "m.wilson@email.com",
-//             "department": "Sales",
-//             "status": "On Leave"
-//         },
-//         {
-//             "id": 4,
-//             "firstName": "Emily",
-//             "lastName": "Brown",
-//             "email": "emily.b@email.com",
-//             "department": "HR",
-//             "status": "Active"
-//         },
-//         {
-//             "id": 5,
-//             "firstName": "David",
-//             "lastName": "Lee",
-//             "email": "david.lee@email.com",
-//             "department": "Development",
-//             "status": "Inactive"
-//         }
-//     ]
-// };
- 
-
-var employeeData = {
+var Data1 = {
     "columns": [
         { "key": "id", "header": "ID" },
         { "key": "firstName", "header": "First Name" },
         { "key": "lastName", "header": "Last Name" },
         { "key": "email", "header": "Email" },
-        // { "key": "major", "header": "Major" },
+        { "key": "department", "header": "Department" },
+        // { "key": "status", "header": "Current Status" }
+    ],
+    "status": {
+    "Active": "green",
+    "On Leave": "red",
+    "Inactive": "yellow",
+    "Terminated": "danger",
+    "Suspended": "warning"
+},
+    "bodyel": [
+        {
+            "id": 1,
+            "firstName": "John",
+            "lastName": "Smith",
+            "email": "john.smith@email.com",
+            "department": "Marketing",
+            "status": "Active"
+        },
+        {
+            "id": 2,
+            "firstName": "Sarah",
+            "lastName": "Johnson",
+            "email": "sarah.j@email.com",
+            "department": "Development",
+            "status": "Active"
+        },
+        {
+            "id": 3,
+            "firstName": "Michael",
+            "lastName": "Wilson",
+            "email": "m.wilson@email.com",
+            "department": "Sales",
+            "status": "On Leave"
+        },
+        {
+            "id": 4,
+            "firstName": "Emily",
+            "lastName": "Brown",
+            "email": "emily.b@email.com",
+            "department": "HR",
+            "status": "Active"
+        },
+        {
+            "id": 5,
+            "firstName": "David",
+            "lastName": "Lee",
+            "email": "david.lee@email.com",
+            "department": "Development",
+            "status": "Inactive"
+        }
+    ]
+};
+ 
+
+ var Data2 = {
+    "columns": [
+        { "key": "id", "header": "ID" },
+        { "key": "firstName", "header": "First Name" },
+        { "key": "lastName", "header": "Last Name" },
+        { "key": "email", "header": "Email" },
+        { "key": "major", "header": "Major" },
         { "key": "year", "header": "Year" },
        
         { "key": "gpa", "header": "GPA" },
@@ -177,9 +177,517 @@ var employeeData = {
             "year": "Senior",
             "gpa": 3.4,
             "status": "Inactive"
+        },
+        {
+            "id": 11,
+            "firstName": "Kelly",
+            "lastName": "Adams",
+            "email": "kelly.adams@email.com",
+            "major": "Economics",
+            "year": "Freshman",
+            "gpa": 3.7,
+            "status": "Active"
+        },
+        {
+            "id": 12,
+            "firstName": "Liam",
+            "lastName": "Carter",
+            "email": "liam.carter@email.com",
+            "major": "Philosophy",
+            "year": "Sophomore",
+            "gpa": 3.3,
+            "status": "Active"
+        },
+        {
+            "id": 13,
+            "firstName": "Mia",
+            "lastName": "Rodriguez",
+            "email": "mia.rodriguez@email.com",
+            "major": "Political Science",
+            "year": "Junior",
+            "gpa": 3.5,
+            "status": "On Leave"
+        },
+        {
+            "id": 14,
+            "firstName": "Noah",
+            "lastName": "Hernandez",
+            "email": "noah.hernandez@email.com",
+            "major": "Art History",
+            "year": "Senior",
+            "gpa": 3.2,
+            "status": "Graduated"
+        },
+        {
+            "id": 15,
+            "firstName": "Olivia",
+            "lastName": "Gonzalez",
+            "email": "olivia.gonzalez@email.com",
+            "major": "Environmental Science",
+            "year": "Senior",
+            "gpa": 3.8,
+            "status": "Active"
+        },
+        {
+            "id": 16,
+            "firstName": "Paul",
+            "lastName": "Nelson",
+            "email": "paul.nelson@email.com",
+            "major": "Business Administration",
+            "year": "Freshman",
+            "gpa": 2.9,
+            "status": "Inactive"
+        },
+        {
+            "id": 17,
+            "firstName": "Quinn",
+            "lastName": "Mitchell",
+            "email": "quinn.mitchell@email.com",
+            "major": "Music",
+            "year": "Sophomore",
+            "gpa": 3.4,
+            "status": "Active"
+        },
+        {
+            "id": 18,
+            "firstName": "Rachel",
+            "lastName": "Perez",
+            "email": "rachel.perez@email.com",
+            "major": "Theater Arts",
+            "year": "Junior",
+            "gpa": 3.0,
+            "status": "On Leave"
+        },
+        {
+            "id": 19,
+            "firstName": "Samuel",
+            "lastName": "Wright",
+            "email": "samuel.wright@email.com",
+            "major": "Computer Engineering",
+            "year": "Senior",
+            "gpa": 3.9,
+            "status": "Graduated"
+        },
+        {
+            "id": 20,
+            "firstName": "Tina",
+            "lastName": "Scott",
+            "email": "tina.scott@email.com",
+            "major": "Nursing",
+            "year": "Senior",
+            "gpa": 3.6,
+            "status": "Inactive"
         }
     ]
 };
+
+var Data3=
+{
+    "columns": [
+        { "key": "id", "header": "ID" },
+        { "key": "firstName", "header": "First Name" },
+        { "key": "lastName", "header": "Last Name" },
+        { "key": "email", "header": "Email" },
+        { "key": "major", "header": "Major" },
+        { "key": "year", "header": "Year" },
+        { "key": "gpa", "header": "GPA" },
+        // { "key": "status", "header": "Current Status" },
+        { "key": "phone", "header": "Phone Number" },
+        { "key": "address", "header": "Address" },
+        { "key": "dob", "header": "Date of Birth" },
+        { "key": "enrollmentDate", "header": "Enrollment Date" },
+        { "key": "graduationDate", "header": "Expected Graduation Date" }
+    ],
+    "status": {
+        "Active": "green",
+        "Graduated": "blue",
+        "On Leave": "red",
+        "Inactive": "yellow"
+    },
+    "bodyel": [
+        {
+            "id": 1,
+            "firstName": "Alice",
+            "lastName": "Johnson",
+            "email": "alice.johnson@email.com",
+            "major": "Computer Science",
+            "year": "Sophomore",
+            "gpa": 3.8,
+            "status": "Active",
+            "phone": "123-456-7890",
+            "address": "123 Main St, Cityville, CA",
+            "dob": "2002-05-15",
+            "enrollmentDate": "2020-09-01",
+            "graduationDate": "2024-06-15"
+        },
+        {
+            "id": 2,
+            "firstName": "Bob",
+            "lastName": "Smith",
+            "email": "bob.smith@email.com",
+            "major": "Mathematics",
+            "year": "Freshman",
+            "gpa": 3.5,
+            "status": "Active",
+            "phone": "234-567-8901",
+            "address": "456 Elm St, Townsville, NY",
+            "dob": "2003-08-21",
+            "enrollmentDate": "2021-09-01",
+            "graduationDate": "2025-06-15"
+        },
+        {
+            "id": 3,
+            "firstName": "Charlie",
+            "lastName": "Davis",
+            "email": "charlie.davis@email.com",
+            "major": "Biology",
+            "year": "Junior",
+            "gpa": 2.9,
+            "status": "On Leave",
+            "phone": "345-678-9012",
+            "address": "789 Oak St, Villageton, TX",
+            "dob": "2001-04-11",
+            "enrollmentDate": "2019-09-01",
+            "graduationDate": "2023-06-15"
+        },
+        {
+            "id": 4,
+            "firstName": "Emma",
+            "lastName": "Rodriguez",
+            "email": "emma.rodriguez@email.com",
+            "major": "Computer Science",
+            "year": "Senior",
+            "gpa": 3.7,
+            "status": "Active",
+            "phone": "123-456-7890",
+            "address": "456 Pine Lane, Collegetown, CA",
+            "dob": "2000-09-15",
+            "enrollmentDate": "2020-01-15",
+            "graduationDate": "2024-05-30"
+        },
+        {
+            "id": 5,
+            "firstName": "Liam",
+            "lastName": "Chen",
+            "email": "liam.chen@email.com",
+            "major": "Electrical Engineering",
+            "year": "Sophomore",
+            "gpa": 3.4,
+            "status": "Active",
+            "phone": "234-567-8901",
+            "address": "222 Maple Road, Techville, WA",
+            "dob": "2003-11-22",
+            "enrollmentDate": "2021-09-01",
+            "graduationDate": "2025-06-15"
+        },
+        {
+            "id": 6,
+            "firstName": "Charlie",
+            "lastName": "Davis",
+            "email": "charlie.davis@email.com",
+            "major": "Biology",
+            "year": "Junior",
+            "gpa": 2.9,
+            "status": "On Leave",
+            "phone": "345-678-9012",
+            "address": "789 Oak St, Villageton, TX",
+            "dob": "2001-04-11",
+            "enrollmentDate": "2019-09-01",
+            "graduationDate": "2023-06-15"
+        },
+        {
+            "id": 7,
+            "firstName": "Sophia",
+            "lastName": "Kim",
+            "email": "sophia.kim@email.com",
+            "major": "Psychology",
+            "year": "Senior",
+            "gpa": 3.6,
+            "status": "Active",
+            "phone": "456-789-0123",
+            "address": "567 Birch Street, Mindtown, NY",
+            "dob": "1999-07-30",
+            "enrollmentDate": "2019-01-15",
+            "graduationDate": "2024-05-30"
+        },
+        {
+            "id": 8,
+            "firstName": "Marcus",
+            "lastName": "Williams",
+            "email": "marcus.williams@email.com",
+            "major": "Business Administration",
+            "year": "Junior",
+            "gpa": 3.2,
+            "status": "Active",
+            "phone": "567-890-1234",
+            "address": "345 Cedar Avenue, Businessburg, IL",
+            "dob": "2001-12-05",
+            "enrollmentDate": "2020-09-01",
+            "graduationDate": "2024-06-15"
+        },
+        {
+            "id": 9,
+            "firstName": "Olivia",
+            "lastName": "Lee",
+            "email": "olivia@gmail.com",
+            "major": "Art",
+            "year": "Senior",
+            "gpa": 3.9,
+            "status": "Graduated",
+            "phone": "678-901-2345",
+            "address": "678 Pine Street, Artville, CA",
+            "dob": "1999-02-20",
+            "enrollmentDate": "2019-01-15",
+            "graduationDate": "2023-05-30"
+        },
+        {
+            "id": 10,
+            "firstName": "Ethan",
+            "lastName": "Taylor",
+            "email": "ethan@gmail.com",
+            "major": "Physics",
+            "year": "Senior",
+            "gpa": 2.7,
+            "status": "Inactive",
+            "phone": "789-012-3456",
+            "address": "789 Elm Road, Physicstown, WA",
+            "dob": "1999-11-15",
+            "enrollmentDate": "2019-09-01",
+            "graduationDate": "2023-05-30"
+        },
+        {
+            "id": 11,
+            "firstName": "Fay",
+            "lastName": "Martinez",
+            "email": "fay@gmail.com",
+            "major": "Engineering",
+            "year": "Freshman",
+            "gpa": 3.2,
+            "status": "Active",
+            "phone": "123-456-7890",
+            "address": "123 Main St, Cityville, CA",
+            "dob": "2002-05-15",
+            "enrollmentDate": "2020-09-01",
+            "graduationDate": "2024-06-15"
+        },
+        {
+            "id": 12,
+            "firstName": "Grace",
+            "lastName": "Wong",
+            "email": "grace.wong@university.edu",
+            "major": "Environmental Science",
+            "year": "Sophomore",
+            "gpa": 3.6,
+            "status": "Active",
+            "phone": "987-654-3210",
+            "address": "456 River Road, Greenville, OR",
+            "dob": "2003-03-25",
+            "enrollmentDate": "2021-01-15",
+            "graduationDate": "2025-05-30"
+        },
+        {
+            "id": 13,
+            "firstName": "Miguel",
+            "lastName": "Santos",
+            "email": "miguel.santos@university.edu",
+            "major": "International Relations",
+            "year": "Junior",
+            "gpa": 3.3,
+            "status": "Active",
+            "phone": "456-123-7890",
+            "address": "234 Global Avenue, Diplomaville, DC",
+            "dob": "2001-09-10",
+            "enrollmentDate": "2020-09-01",
+            "graduationDate": "2024-06-15"
+        },
+        {
+            "id": 14,
+            "firstName": "Rachel",
+            "lastName": "Cohen",
+            "email": "rachel.cohen@university.edu",
+            "major": "Neuroscience",
+            "year": "Senior",
+            "gpa": 3.8,
+            "status": "Active",
+            "phone": "345-678-9012",
+            "address": "789 Brain Street, Sciencetown, MA",
+            "dob": "2000-06-18",
+            "enrollmentDate": "2019-09-01",
+            "graduationDate": "2024-05-30"
+        },
+        {
+            "id": 15,
+            "firstName": "Ahmed",
+            "lastName": "Hassan",
+            "email": "ahmed.hassan@university.edu",
+            "major": "Chemical Engineering",
+            "year": "Freshman",
+            "gpa": 3.1,
+            "status": "Active",
+            "phone": "678-901-2345",
+            "address": "567 Innovation Lane, Researchburg, TX",
+            "dob": "2004-01-30",
+            "enrollmentDate": "2022-01-15",
+            "graduationDate": "2026-05-30"
+        },
+        {
+            "id": 16,
+            "firstName": "Isabella",
+            "lastName": "Garcia",
+            "email": "isabella.garcia@university.edu",
+            "major": "Architecture",
+            "year": "Senior",
+            "gpa": 3.5,
+            "status": "Active",
+            "phone": "234-567-8901",
+            "address": "890 Design Street, Buildcity, CA",
+            "dob": "2000-11-12",
+            "enrollmentDate": "2019-09-01",
+            "graduationDate": "2024-05-30"
+        },
+        {
+            "id": 17,
+            "firstName": "Noah",
+            "lastName": "Peterson",
+            "email": "noah.peterson@university.edu",
+            "major": "Mechanical Engineering",
+            "year": "Sophomore",
+            "gpa": 3.3,
+            "status": "Active",
+            "phone": "345-678-9012",
+            "address": "456 Innovation Road, Techville, WA",
+            "dob": "2003-07-22",
+            "enrollmentDate": "2021-09-01",
+            "graduationDate": "2025-06-15"
+        },
+        {
+            "id": 18,
+            "firstName": "Zara",
+            "lastName": "Khan",
+            "email": "zara.khan@university.edu",
+            "major": "Anthropology",
+            "year": "Junior",
+            "gpa": 3.7,
+            "status": "Active",
+            "phone": "456-789-0123",
+            "address": "234 Culture Lane, Studyville, NY",
+            "dob": "2001-03-05",
+            "enrollmentDate": "2020-09-01",
+            "graduationDate": "2024-06-15"
+        },
+        {
+            "id": 19,
+            "firstName": "Daniel",
+            "lastName": "Mueller",
+            "email": "daniel.mueller@university.edu",
+            "major": "Economics",
+            "year": "Senior",
+            "gpa": 3.6,
+            "status": "Active",
+            "phone": "567-890-1234",
+            "address": "678 Finance Avenue, Markettown, IL",
+            "dob": "2000-09-18",
+            "enrollmentDate": "2019-01-15",
+            "graduationDate": "2024-05-30"
+        },
+        {
+            "id": 20,
+            "firstName": "Aria",
+            "lastName": "Patel",
+            "email": "aria.patel@university.edu",
+            "major": "Biotechnology",
+            "year": "Freshman",
+            "gpa": 3.9,
+            "status": "Active",
+            "phone": "678-901-2345",
+            "address": "345 Science Park, Genometown, MA",
+            "dob": "2004-06-30",
+            "enrollmentDate": "2022-09-01",
+            "graduationDate": "2026-06-15"
+        },
+        {
+            "id": 21,
+            "firstName": "Ryan",
+            "lastName": "Thompson",
+            "email": "ryan.thompson@university.edu",
+            "major": "Film Studies",
+            "year": "Junior",
+            "gpa": 3.4,
+            "status": "Active",
+            "phone": "789-012-3456",
+            "address": "567 Cinema Street, Hollywoodville, CA",
+            "dob": "2001-12-07",
+            "enrollmentDate": "2020-09-01",
+            "graduationDate": "2024-06-15"
+        },
+        {
+            "id": 22,
+            "firstName": "Elena",
+            "lastName": "Rodriguez",
+            "email": "elena.rodriguez@university.edu",
+            "major": "Linguistics",
+            "year": "Senior",
+            "gpa": 3.8,
+            "status": "Active",
+            "phone": "890-123-4567",
+            "address": "123 Language Lane, Wordsburg, TX",
+            "dob": "2000-04-25",
+            "enrollmentDate": "2019-09-01",
+            "graduationDate": "2024-05-30"
+        },
+        {
+            "id": 23,
+            "firstName": "Samuel",
+            "lastName": "Kim",
+            "email": "samuel.kim@university.edu",
+            "major": "Data Science",
+            "year": "Sophomore",
+            "gpa": 3.5,
+            "status": "Active",
+            "phone": "901-234-5678",
+            "address": "456 Analytics Road, Dataville, WA",
+            "dob": "2003-10-15",
+            "enrollmentDate": "2021-09-01",
+            "graduationDate": "2025-06-15"
+        },
+        {
+            "id": 24,
+            "firstName": "Mia",
+            "lastName": "Nguyen",
+            "email": "mia.nguyen@university.edu",
+            "major": "Public Health",
+            "year": "Junior",
+            "gpa": 3.6,
+            "status": "Active",
+            "phone": "012-345-6789",
+            "address": "789 Wellness Street, Healthtown, CA",
+            "dob": "2001-08-03",
+            "enrollmentDate": "2020-09-01",
+            "graduationDate": "2024-06-15"
+        },
+        {
+            "id": 25,
+            "firstName": "Lucas",
+            "lastName": "Morales",
+            "email": "lucas.morales@university.edu",
+            "major": "Robotics Engineering",
+            "year": "Senior",
+            "gpa": 3.7,
+            "status": "Active",
+            "phone": "123-456-7890",
+            "address": "234 Innovation Drive, Techburg, MI",
+            "dob": "2000-01-20",
+            "enrollmentDate": "2019-09-01",
+            "graduationDate": "2024-05-30"
+        }
+        
+
+        
+    ]
+};
+
+var Data=Data3;
+// console.log(Data);
 
 const table = document.getElementById('resizable-table');
 const tableContainer = document.querySelector('.table-container');
@@ -200,6 +708,9 @@ let employeeId = 1;
 // Function to render the employee table
 function renderEmployeeTable(data,status1="status") {
     const tableHead = document.querySelector('thead');
+    tableHead.style.position = 'sticky';
+    tableHead.style.top = '0';
+    tableHead.style.zIndex = '2';
     const headerRow = document.createElement('tr');
  
     // Add Select column header
@@ -211,8 +722,13 @@ function renderEmployeeTable(data,status1="status") {
         const th = document.createElement('th');
         th.setAttribute('scope', 'col');
         th.textContent = column.header;
-        th.style.position = 'relative'; // Ensure icons are positioned relative to th
+        th.style.position = 'relative'; 
+        th.style.overflow = 'hidden';
+        th.style.whiteSpace = 'nowrap';
+        th.style.textOverflow = 'ellipsis';
         th.style.paddingRight = '90px';
+        
+
         const resizer = document.createElement('div');
         resizer.className = 'resizer';
         resizer.id = `resizer-${index}`;
@@ -224,7 +740,9 @@ function renderEmployeeTable(data,status1="status") {
         iconContainer.className = 'icon-container';
         iconContainer.style.position = 'absolute';
         iconContainer.style.top = '50%';
-        iconContainer.style.right = '5px';  // Adjust as needed
+        iconContainer.style.right = '5px';  // Position the icons to the right
+        
+
         iconContainer.style.transform = 'translateY(-50%)';
         iconContainer.style.display = 'flex';
         iconContainer.style.alignItems = 'center';
@@ -265,14 +783,14 @@ function renderEmployeeTable(data,status1="status") {
 
             // If values are selected, filter and group
             if (selectedValues.length > 0) {
-                const filteredEmployees = employeeData.bodyel.filter(employee =>
+                const filteredEmployees = Data.bodyel.filter(employee =>
                     selectedValues.includes(String(employee[currentColumn.key]))
                 );
 
                 reloaddata_filtered(filteredEmployees);
             } else {
                 // If no values selected, reload full data
-                renderEmployeeTable(employeeData);
+                renderEmployeeTable(Data);
             }
         });
         sortIcon.onclick = () => {
@@ -347,11 +865,12 @@ function renderEmployeeTable(data,status1="status") {
             const cellContent = document.createElement('div');
             cellContent.textContent = employee[column.key];
             cellContent.className = 'cell-content';
+            
             cellContent.addEventListener('click', () => editCell(cellContent, column.key, employee));
  
             if (column.key === status) {
-                cell.innerHTML = `<span class="badge" style="background-color:${employeeData.status[employeeData.bodyel[index][column.key]]}">${employeeData.bodyel[index][column.key]}</span>`;
-                alert(employeeData.status[employeeData.bodyel[index][column.key]]);
+                cell.innerHTML = `<span class="badge" style="background-color:${Data.status[Data.bodyel[index][column.key]]}">${Data.bodyel[index][column.key]}</span>`;
+                alert(Data.status[Data.bodyel[index][column.key]]);
             } else {
                 cell.appendChild(cellContent);
             }
@@ -368,117 +887,154 @@ function renderEmployeeTable(data,status1="status") {
 
 function handleFilter(column) {
     window.currentFilterColumn = column;
-    function getColumnData(columnKey) {
-        return [...new Set(employeeData.bodyel.map(emp => emp[columnKey]))]; // Ensure unique values
-    }
 
-    const columnKey = column.key;
-    const columnData = getColumnData(columnKey);
+    // Get unique column values
+    const columnData = [...new Set(Data.bodyel.map(emp => emp[column.key]))].filter(item => 
+        item !== null && item !== undefined
+    ).sort((a, b) => String(a).localeCompare(String(b)));
+
     const modalBody = document.querySelector(".modal-body");
     modalBody.innerHTML = "";
-    
 
-
-    const sortDiv = document.createElement("div");
-    sortDiv.classList.add("d-flex", "flex-column", "mb-2");
-    const ascendingBtn = document.createElement("button");
-    ascendingBtn.classList.add("btn", "btn-sm");
-    ascendingBtn.id = "sortAtoZ";
-    ascendingBtn.innerHTML = `
-    <i class="bi bi-arrow-up"></i> A to Z
+    // Create compact filter container
+    const filterContainer = document.createElement("div");
+    filterContainer.classList.add("p-2");
+    filterContainer.innerHTML = `
+        <div class="row g-2 mb-2">
+            <div class="col-6">
+                <select class="form-select form-select-sm" id="filterTypeSelect">
+                    <option value="exact">Exact</option>
+                    <option value="startsWith">Starts</option>
+                    <option value="endsWith">Ends</option>
+                    <option value="contains">Contains</option>
+                </select>
+            </div>
+            <div class="col-6">
+                <input type="text" class="form-control form-control-sm" id="filterInput" placeholder="Filter">
+            </div>
+        </div>
+        <div class="d-flex justify-content-between align-items-center mb-2">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="selectAllCheckbox">
+                <label class="form-check-label" for="selectAllCheckbox">All</label>
+            </div>
+            <div>
+                <button class="btn btn-sm btn-outline-secondary me-1" id="deselectAllButton">Clear</button>
+                <button class="btn btn-sm btn-outline-success" id="applyFilterBtn">Apply</button>
+            </div>
+        </div>
     `;
 
-    const descendingBtn = document.createElement("button");
-    descendingBtn.classList.add("btn", "btn-sm");
-    descendingBtn.id = "sortZtoA";
-    descendingBtn.innerHTML = `
-    <i class="bi bi-arrow-down"></i> Z to A
-    `;
+    // Create scrollable list container
+    const listContainer = document.createElement("div");
+    listContainer.classList.add("filter-list-container", "border", "rounded");
+    listContainer.style.maxHeight = "200px";
+    listContainer.style.overflowY = "auto";
+    listContainer.style.paddingRight = "10px"; // Add some right padding
 
-    sortDiv.appendChild(ascendingBtn);
-    sortDiv.appendChild(descendingBtn);
-    modalBody.appendChild(sortDiv);
-
-    ascendingBtn.addEventListener('click', () => {
-        sortAtoZ(column);
-        reloaddata_filtered(employeeData.bodyel);
-        filterModal.hide();
-    });
-
-    descendingBtn.addEventListener('click', () => {
-        sortZtoA(column);
-        reloaddata_filtered(employeeData.bodyel);
-        filterModal.hide();
-    });
-
-    const deselectAllDiv = document.createElement("div");
-    deselectAllDiv.classList.add("form-check");
-
-    deselectAllDiv.innerHTML = `
-        <button class="btn " id="deselectAllButton">Clear Filter</button>
-    `;
-
-    modalBody.appendChild(deselectAllDiv);
-    const deselectAllButton = document.getElementById("deselectAllButton");
-    deselectAllButton.addEventListener("click", function() {
-        const checkboxes = modalBody.querySelectorAll('.form-check-input[type="checkbox"]');
-        checkboxes.forEach(checkbox => {
-            checkbox.checked = false; // Uncheck all checkboxes
-        });
-        selectAllCheckbox.checked = false; // Also deselect the "Select All" checkbox
-    });
-
-    const selectAllDiv = document.createElement("div");
-    selectAllDiv.classList.add("form-check");
-
-    selectAllDiv.innerHTML = `
-        <input class="form-check-input" type="checkbox" id="selectAllCheckbox">
-        <label class="form-check-label fw-bold" for="selectAllCheckbox">Select All</label>
-        <hr>
-    `;
-    modalBody.appendChild(selectAllDiv);
-
-
+    // Populate list with checkboxes
     columnData.forEach(item => {
-        if (item === null || item === undefined) return; // Skip invalid values
-
-        const safeItem = String(item); // Convert to string
-        // const safeId = `checkbox_${safeItem.replace(/\s+/g, "_")}`; // Safe ID
-
+        const safeItem = String(item);
         const d = document.createElement("div");
-        d.classList.add("form-check");
+        d.classList.add("filter-checkbox-wrapper", "d-flex", "align-items-center", "p-1", "border-bottom");
+        
+        // Create checkbox and label elements separately for better control
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.classList.add("form-check-input", "item-checkbox", "me-2");
+        checkbox.id = safeItem;
+        checkbox.value = safeItem;
 
-        d.innerHTML = `
-            <input class="form-check-input item-checkbox" type="checkbox" id="${safeItem}" value="${safeItem}">
-            <label class="form-check-label" for="${safeItem}">${safeItem}</label>
-        `;
+        const label = document.createElement("label");
+        label.classList.add("form-check-label", "flex-grow-1");
+        label.htmlFor = safeItem;
+        label.textContent = safeItem;
 
-        modalBody.appendChild(d);
+        // Append checkbox and label to the wrapper
+        d.appendChild(checkbox);
+        d.appendChild(label);
+
+        listContainer.appendChild(d);
     });
 
-    // Show modal
-    const filterModal = new bootstrap.Modal(document.getElementById("filterModal"));
-    filterModal.show();
+    // Append list to container
+    filterContainer.appendChild(listContainer);
+    modalBody.appendChild(filterContainer);
 
-    // "Select All" functionality
+    // Select All functionality
     document.getElementById("selectAllCheckbox").addEventListener("change", function () {
         document.querySelectorAll(".item-checkbox").forEach(checkbox => {
             checkbox.checked = this.checked;
         });
     });
-    const columnIndex = Array.from(document.querySelectorAll('th')).findIndex(th => th.textContent === column.header);
-    const columnWidth = document.querySelector(`th:nth-child(${columnIndex + 1})`).offsetWidth;
 
-    // Set the width of the modal dialog
-    const modal = document.querySelector('.modal-dialog');
-    // modal.style.width = `${columnWidth}px`;
+    // Clear Filter functionality
+    document.getElementById("deselectAllButton").addEventListener("click", function() {
+        document.querySelectorAll('.item-checkbox').forEach(checkbox => {
+            checkbox.checked = false;
+        });
+        document.getElementById("selectAllCheckbox").checked = false;
+    });
+
+    // Apply Filter functionality
+    document.getElementById("applyFilterBtn").addEventListener("click", function() {
+        const filterType = document.getElementById("filterTypeSelect").value;
+        const filterValue = document.getElementById("filterInput").value.toLowerCase();
+
+        // Get selected checkbox values
+        const selectedValues = Array.from(
+            document.querySelectorAll('.item-checkbox:checked')
+        ).map(checkbox => checkbox.value);
+
+        // Filter logic
+        let filteredData = Data.bodyel.filter(item => {
+            const columnValue = String(item[column.key]).toLowerCase();
+
+            // Check checkbox selections first
+            if (selectedValues.length > 0 && 
+                !selectedValues.includes(String(item[column.key]))) {
+                return false;
+            }
+
+            // Apply text filter if value is provided
+            if (filterValue) {
+                switch(filterType) {
+                    case 'exact':
+                        return columnValue === filterValue;
+                    case 'startsWith':
+                        return columnValue.startsWith(filterValue);
+                    case 'contains':
+                        return columnValue.includes(filterValue);
+                    case 'endsWith':
+                        return columnValue.endsWith(filterValue);
+                }
+            }
+
+            return true;
+        });
+
+        // Reload filtered data
+        reloaddata_filtered(filteredData);
+        
+        // Hide modal
+        const filterModal = bootstrap.Modal.getInstance(document.getElementById("filterModal"));
+        filterModal.hide();
+    });
+
+    // Show modal
+    const filterModal = new bootstrap.Modal(document.getElementById("filterModal"));
+    filterModal.show();
 }
+
+
+
 
 // function to reload data after sort
 function reloaddata(data) {
     const tableBody = document.querySelector('tbody');
     tableBody.innerHTML = '';
  
+    // This Additional functionality is not completed yet
     data.bodyel.forEach(employee => {
         const statusClass = {
             'Active': 'bg-success',
@@ -509,7 +1065,9 @@ function reloaddata(data) {
             cellContent.addEventListener('click', () => editCell(cellContent, column.key, employee));
  
             if (column.key === 'status') {
-                cell.innerHTML = `<span class="badge ${statusClass}">${employee[column.key]}</span>`;
+                if (column.key === status) {
+                    cell.innerHTML = `<span class="badge" style="background-color:${Data.status[Data.bodyel[index][column.key]]}">${Data.bodyel[index][column.key]}</span>`;
+                }
             } else {
                 cell.appendChild(cellContent);
             }
@@ -546,7 +1104,7 @@ function reloaddata_filtered(employees) {
             selectCell.appendChild(checkbox);
             row.appendChild(selectCell);
 
-            employeeData.columns.forEach(column => {
+            Data.columns.forEach(column => {
                 const cell = column.key === 'id' ? document.createElement('th') : document.createElement('td');
                 if (column.key === 'id') {
                     cell.setAttribute('scope', 'row');
@@ -586,14 +1144,14 @@ function groupBy(list, keyGetter) {
 }
 
 function group_keys(column) {
-    const grouped_by_name = groupBy(employeeData.bodyel, employee => employee[column.key]);
+    const grouped_by_name = groupBy(Data.bodyel, employee => employee[column.key]);
     // console.log(grouped_by_name);
     return grouped_by_name.keys();
 }
 
 function sortAtoZ(column) {
     const key = column.key;
-    employeeData.bodyel.sort((a, b) => {
+    Data.bodyel.sort((a, b) => {
         const aValue = a[key];
         const bValue = b[key];
         return aValue.localeCompare(bValue);
@@ -602,7 +1160,7 @@ function sortAtoZ(column) {
 
 function sortZtoA(column) {
     const key = column.key;
-    employeeData.bodyel.sort((a, b) => {
+    Data.bodyel.sort((a, b) => {
         const aValue = a[key];
         const bValue = b[key];
         return bValue.localeCompare(aValue);
@@ -612,7 +1170,7 @@ function handleSort(column) {
     const key = column.key;
     const direction = column.sortState;
  
-    employeeData.bodyel.sort((a, b) => {
+    Data.bodyel.sort((a, b) => {
         const aValue = a[key];
         const bValue = b[key];
  
@@ -626,8 +1184,8 @@ function handleSort(column) {
         return direction === 'asc' ? comparisonResult : -comparisonResult;
     });
  
-    // console.log(employeeData.employees);
-    reloaddata(employeeData);
+    // console.log(Data.employees);
+    reloaddata(Data);
 }
  
 
@@ -658,12 +1216,14 @@ function saveEdit(cellContent, newValue, key, employee) {
     if (newValue.trim() === "") return; // Do not save empty values
     cellContent.innerHTML = newValue; // Update the cell content
     employee[key] = newValue; // Update the employee data
+    
     toggleButtons('update');
     // append to main data
    
     
 }
  
+// function to enable button based on any cell edited
 function updateButtonState() {
     const updateButton = document.getElementById('updateButton');
     if (editedCells.length > 0) {
@@ -672,6 +1232,8 @@ function updateButtonState() {
         updateButton.disabled = true; // Disable it if no cells are edited
     }
 }
+// made to add new row to main data
+var newEntry = {};
 function addEmployee() {
 
     const tableBody = document.querySelector('#resizable-table tbody');
@@ -691,9 +1253,11 @@ function addEmployee() {
     const idCell = document.createElement('th');
     idCell.textContent = employeeId++;
     newRow.appendChild(idCell);
+    newEntry={};
+    newEntry.id =parseInt( idCell.textContent);
     
     // Add other columns
-    employeeData.columns.forEach((column, index) => {
+    Data.columns.forEach((column, index) => {
         if (index > 0) { // Skip the first column (ID)
             const cell = document.createElement('td');
             const div = document.createElement('div');
@@ -702,6 +1266,7 @@ function addEmployee() {
             div.textContent = column.header || ' ';
             cell.appendChild(div);
             newRow.appendChild(cell);
+            newEntry[column.key] = '';
         }
     });
     
@@ -710,7 +1275,7 @@ function addEmployee() {
  
 // Initial rendering of the employee table
 document.addEventListener('DOMContentLoaded', () => {
-    renderEmployeeTable(employeeData,status="Current status");
+    renderEmployeeTable(Data);
     autoFitAll();
 });
  
@@ -760,9 +1325,9 @@ function initResize(e) {
    
     // Calculate the initial position relative to the table container
     const tableRect = tableContainer.getBoundingClientRect();
-    const initialX = e.pageX - tableRect.left + tableContainer.scrollLeft;
+    const initialX = e.pageX - tableRect.left + tableContainer.scrollLeft;  //Horizontal scroll position
    
-    resizeIndicator.style.display = 'block';
+    resizeIndicator.style.display = 'block';//Makes the resize indicator visible
     resizeIndicator.style.left = `${initialX}px`;
    
     document.addEventListener('mousemove', handleResize);
@@ -780,7 +1345,7 @@ function handleResize(e) {
     const x = e.pageX - tableRect.left + tableContainer.scrollLeft;
    
     const width = startWidth + (e.pageX - startX);
-    if (width >= 50) {
+    if (width >= 100&&width<=500) {
         resizeIndicator.style.left = `${x}px`;
         currentColumn.style.width = `${width}px`;
     }
@@ -806,7 +1371,7 @@ function handleDoubleClick(e) {
 }
  
 document.addEventListener('DOMContentLoaded', () => {
-    renderEmployeeTable(employeeData);
+    renderEmployeeTable(Data);
     autoFitAll();
 });
 
@@ -821,6 +1386,7 @@ function deleteSelected() {
         // alert('No rows selected for deletion');
         return;
     }
+    
     toggleButtons('delete');
     const selectedIds = checkedBoxes.map(checkbox => {
         const row = checkbox.closest('tr');
@@ -829,12 +1395,13 @@ function deleteSelected() {
     });
 
     // Filter out employees with selected IDs
-    employeeData.bodyel = employeeData.bodyel.filter(
+    Data.bodyel = Data.bodyel.filter(
         employee => !selectedIds.includes(employee.id)
     );
     
-    // Re-render the table
-    renderEmployeeTable(employeeData);
+    // update the main data here
+    // console.log("+++++++++++++++++++++",Data.bodyel);
+    renderEmployeeTable(Data);
     
     // Reset button states
     toggleButtons('delete');
@@ -897,9 +1464,14 @@ document.getElementById('addButton').addEventListener('click', function () {
 document.getElementById('updateButton').addEventListener('click', () => {
     editedCells.forEach(({ cellContent, input, key, employee }) => {
         const newValue = input.value;
+        newEntry[key] = newValue;
         saveEdit(cellContent, newValue, key, employee);
     });
-
+    if (Object.keys(newEntry).length > 0) {
+        Data.bodyel.push(newEntry);
+        renderEmployeeTable(Data);
+        newEntry = {};
+    }
     editedCells = []; // Clear the edited cells after update
     updateButtonState(); // Disable the "Update" button
     // toggleButtons('update');
@@ -928,6 +1500,10 @@ document.getElementById('cancelButton').addEventListener('click', () => {
     });
     editedCells = []; // Clear the edited cells
     updateButtonState(); // Disable the "Update" button
-    deleteSelected();
+    const addButton = document.getElementById('addButton');
+    if(addButton.disabled){
+        deleteSelected();
+    }
+        
     toggleButtons('cancel');
 });
