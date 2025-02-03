@@ -183,18 +183,21 @@ function renderEmployeeTable(data) {
         filterIcon.className = 'bi bi-funnel';
         filterIcon.style.cursor = 'pointer';
         filterIcon.style.marginLeft = '5px'; // Space between icons
-        filterIcon.onclick = (event) => {
-            $('#filterModal').modal('show'); // Use jQuery to show the modal
+        filterIcon.onclick = () => {
+            const filterModal = new bootstrap.Modal(document.getElementById('filterModal'));
+            console.log("=====s",filterModal);
+            filterModal.show();
         };
-        // document.getElementById('close_modal').onclick = () => {
-           
-        //     $('#filterModal').modal('hide');
-        // };
-        // document.getElementById('applyFilter').onclick = () => {
-           
-        //     $('#filterModal').modal('hide');
-        // };
- 
+        document.getElementById('close_modal').addEventListener('click', () => {
+            const filterModal = bootstrap.Modal.getInstance(document.getElementById('filterModal'));
+            filterModal.hide();
+        });
+        
+        document.getElementById('applyFilter').addEventListener('click', () => {
+            const filterModal = bootstrap.Modal.getInstance(document.getElementById('filterModal'));
+            filterModal.hide();
+            // Add any filter application logic here
+        });
         sortIcon.onclick = () => {
             if (column.sortState === 'none' || column.sortState === 'desc') {
                 column.sortState = 'asc';
@@ -207,7 +210,7 @@ function renderEmployeeTable(data) {
             handleSort(column);
         };
  
-        filterIcon.onclick = () => handleFilter(column); // Implement handleFilter
+        // filterIcon.onclick = () => handleFilter(column); // Implement handleFilter
  
         iconContainer.appendChild(sortIcon);
         iconContainer.appendChild(filterIcon);  // Add both icons
