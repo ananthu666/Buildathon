@@ -65,11 +65,11 @@ var employeeData = {
         { "key": "firstName", "header": "First Name" },
         { "key": "lastName", "header": "Last Name" },
         { "key": "email", "header": "Email" },
-        { "key": "major", "header": "Major" },
+        // { "key": "major", "header": "Major" },
         { "key": "year", "header": "Year" },
        
         { "key": "gpa", "header": "GPA" },
-        { "key": "status", "header": "Current Status" }
+        // { "key": "status", "header": "Current Status" }
     ],
     "status": {
         "Active": "green",
@@ -198,7 +198,7 @@ let employeeId = 1;
  
  
 // Function to render the employee table
-function renderEmployeeTable(data,status="Current status") {
+function renderEmployeeTable(data,status1="status") {
     const tableHead = document.querySelector('thead');
     const headerRow = document.createElement('tr');
  
@@ -239,7 +239,7 @@ function renderEmployeeTable(data,status="Current status") {
         filterIcon.className = 'bi bi-funnel';
         filterIcon.style.cursor = 'pointer';
         filterIcon.style.marginLeft = '5px'; // Space between icons
-        filterIcon.onclick = () => handleFilter(column);
+        filterIcon.onclick = () => handleFilter(column);    
         
 
         document.getElementById('close_modal').addEventListener('click', () => {
@@ -251,6 +251,29 @@ function renderEmployeeTable(data,status="Current status") {
             const filterModal = bootstrap.Modal.getInstance(document.getElementById('filterModal'));
             filterModal.hide();
             // Add any filter application logic here
+        });
+
+        document.getElementById('applyFilter').addEventListener('click', () => {
+            const filterModal = bootstrap.Modal.getInstance(document.getElementById('filterModal'));
+            filterModal.hide();
+            // Add any filter application logic here
+            const currentColumn = window.currentFilterColumn; // Store the current column globally when opening filter modal
+
+            // Collect selected checkboxes
+            const selectedValues = Array.from(document.querySelectorAll('.item-checkbox:checked'))
+                .map(checkbox => checkbox.value);
+
+            // If values are selected, filter and group
+            if (selectedValues.length > 0) {
+                const filteredEmployees = employeeData.bodyel.filter(employee =>
+                    selectedValues.includes(String(employee[currentColumn.key]))
+                );
+
+                reloaddata_filtered(filteredEmployees);
+            } else {
+                // If no values selected, reload full data
+                renderEmployeeTable(employeeData);
+            }
         });
         sortIcon.onclick = () => {
             if (column.sortState === 'none' || column.sortState === 'desc') {
@@ -327,8 +350,8 @@ function renderEmployeeTable(data,status="Current status") {
             cellContent.addEventListener('click', () => editCell(cellContent, column.key, employee));
  
             if (column.key === status) {
-                cell.innerHTML = `<span class="badge" style="background-color:${employeeData.status[employeeData.bodyel[index].status]}">${employeeData.bodyel[index][column.key]}</span>`;
-
+                cell.innerHTML = `<span class="badge" style="background-color:${employeeData.status[employeeData.bodyel[index][column.key]]}">${employeeData.bodyel[index][column.key]}</span>`;
+                alert(employeeData.status[employeeData.bodyel[index][column.key]]);
             } else {
                 cell.appendChild(cellContent);
             }
@@ -344,6 +367,7 @@ function renderEmployeeTable(data,status="Current status") {
 }
 
 function handleFilter(column) {
+    window.currentFilterColumn = column;
     function getColumnData(columnKey) {
         return [...new Set(employeeData.bodyel.map(emp => emp[columnKey]))]; // Ensure unique values
     }
@@ -352,6 +376,57 @@ function handleFilter(column) {
     const columnData = getColumnData(columnKey);
     const modalBody = document.querySelector(".modal-body");
     modalBody.innerHTML = "";
+    
+
+
+    const sortDiv = document.createElement("div");
+    sortDiv.classList.add("d-flex", "flex-column", "mb-2");
+    const ascendingBtn = document.createElement("button");
+    ascendingBtn.classList.add("btn", "btn-sm");
+    ascendingBtn.id = "sortAtoZ";
+    ascendingBtn.innerHTML = `
+    <i class="bi bi-arrow-up"></i> A to Z
+    `;
+
+    const descendingBtn = document.createElement("button");
+    descendingBtn.classList.add("btn", "btn-sm");
+    descendingBtn.id = "sortZtoA";
+    descendingBtn.innerHTML = `
+    <i class="bi bi-arrow-down"></i> Z to A
+    `;
+
+    sortDiv.appendChild(ascendingBtn);
+    sortDiv.appendChild(descendingBtn);
+    modalBody.appendChild(sortDiv);
+
+    ascendingBtn.addEventListener('click', () => {
+        sortAtoZ(column);
+        reloaddata_filtered(employeeData.bodyel);
+        filterModal.hide();
+    });
+
+    descendingBtn.addEventListener('click', () => {
+        sortZtoA(column);
+        reloaddata_filtered(employeeData.bodyel);
+        filterModal.hide();
+    });
+
+    const deselectAllDiv = document.createElement("div");
+    deselectAllDiv.classList.add("form-check");
+
+    deselectAllDiv.innerHTML = `
+        <button class="btn " id="deselectAllButton">Clear Filter</button>
+    `;
+
+    modalBody.appendChild(deselectAllDiv);
+    const deselectAllButton = document.getElementById("deselectAllButton");
+    deselectAllButton.addEventListener("click", function() {
+        const checkboxes = modalBody.querySelectorAll('.form-check-input[type="checkbox"]');
+        checkboxes.forEach(checkbox => {
+            checkbox.checked = false; // Uncheck all checkboxes
+        });
+        selectAllCheckbox.checked = false; // Also deselect the "Select All" checkbox
+    });
 
     const selectAllDiv = document.createElement("div");
     selectAllDiv.classList.add("form-check");
@@ -361,8 +436,8 @@ function handleFilter(column) {
         <label class="form-check-label fw-bold" for="selectAllCheckbox">Select All</label>
         <hr>
     `;
-
     modalBody.appendChild(selectAllDiv);
+
 
     columnData.forEach(item => {
         if (item === null || item === undefined) return; // Skip invalid values
@@ -391,6 +466,12 @@ function handleFilter(column) {
             checkbox.checked = this.checked;
         });
     });
+    const columnIndex = Array.from(document.querySelectorAll('th')).findIndex(th => th.textContent === column.header);
+    const columnWidth = document.querySelector(`th:nth-child(${columnIndex + 1})`).offsetWidth;
+
+    // Set the width of the modal dialog
+    const modal = document.querySelector('.modal-dialog');
+    // modal.style.width = `${columnWidth}px`;
 }
 
 // function to reload data after sort
@@ -443,6 +524,90 @@ function reloaddata(data) {
  
 //  function to sort column 
 
+function reloaddata_filtered(employees) {
+    const tableBody = document.querySelector('tbody');
+    tableBody.innerHTML = '';
+
+    if (employees && Array.isArray(employees)) {
+        employees.forEach(employee => {
+            const statusClass = {
+                'Active': 'bg-success',
+                'Inactive': 'bg-danger',
+                'On Leave': 'bg-warning text-dark'
+            }[employee.status];
+
+            const row = document.createElement('tr');
+
+            // Add checkbox for selection
+            const selectCell = document.createElement('td');
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.className = 'select-row';
+            selectCell.appendChild(checkbox);
+            row.appendChild(selectCell);
+
+            employeeData.columns.forEach(column => {
+                const cell = column.key === 'id' ? document.createElement('th') : document.createElement('td');
+                if (column.key === 'id') {
+                    cell.setAttribute('scope', 'row');
+                }
+
+                // Create editable cell
+                const cellContent = document.createElement('div');
+                cellContent.textContent = employee[column.key];
+                cellContent.className = 'cell-content';
+                cellContent.addEventListener('click', () => editCell(cellContent, column.key, employee));
+
+                if (column.key === 'status') {
+                    cell.innerHTML = `<span class="badge ${statusClass}">${employee[column.key]}</span>`;
+                } else {
+                    cell.appendChild(cellContent);
+                }
+
+                row.appendChild(cell);
+            });
+
+            tableBody.appendChild(row);
+        });
+    }
+}
+function groupBy(list, keyGetter) {
+    const map = new Map();
+    list.forEach((item) => {
+        const key = keyGetter(item);
+        const collection = map.get(key);
+        if (!collection) {
+            map.set(key, [item]);
+        } else {
+            collection.push(item);
+        }
+    });
+    return map;
+}
+
+function group_keys(column) {
+    const grouped_by_name = groupBy(employeeData.bodyel, employee => employee[column.key]);
+    // console.log(grouped_by_name);
+    return grouped_by_name.keys();
+}
+
+function sortAtoZ(column) {
+    const key = column.key;
+    employeeData.bodyel.sort((a, b) => {
+        const aValue = a[key];
+        const bValue = b[key];
+        return aValue.localeCompare(bValue);
+    });
+}
+
+function sortZtoA(column) {
+    const key = column.key;
+    employeeData.bodyel.sort((a, b) => {
+        const aValue = a[key];
+        const bValue = b[key];
+        return bValue.localeCompare(aValue);
+    });
+}
 function handleSort(column) {
     const key = column.key;
     const direction = column.sortState;
@@ -494,6 +659,9 @@ function saveEdit(cellContent, newValue, key, employee) {
     cellContent.innerHTML = newValue; // Update the cell content
     employee[key] = newValue; // Update the employee data
     toggleButtons('update');
+    // append to main data
+   
+    
 }
  
 function updateButtonState() {
