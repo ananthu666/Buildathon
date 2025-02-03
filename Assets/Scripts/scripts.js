@@ -1,10 +1,10 @@
 const employeeData = {
     "columns": [
-        { "key": "id", "header": "OrderID" },
-        { "key": "firstName", "header": "Customer Name" },
-        { "key": "lastName", "header": "Freidge" },
-        { "key": "email", "header": "Shipping Date" },
-        { "key": "department", "header": "Shipping Country" },
+        { "key": "id", "header": "#" },
+        { "key": "firstName", "header": "First Name" },
+        { "key": "lastName", "header": "Last Name" },
+        { "key": "email", "header": "Email Address" },
+        { "key": "department", "header": "Department" },
         { "key": "status", "header": "Current Status" }
     ],
     "employees": [
@@ -100,8 +100,7 @@ function renderEmployeeTable(data) {
             'Active': 'bg-success',
             'Inactive': 'bg-danger',
             'On Leave': 'bg-warning text-dark'
-        }[employee.status];
- 
+        }[employee[statusKey]]; 
         const row = document.createElement('tr');
  
         // Add checkbox for selection
