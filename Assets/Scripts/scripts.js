@@ -1,10 +1,10 @@
 const employeeData = {
     "columns": [
-        { "key": "id", "header": "OrderID" },
-        { "key": "firstName", "header": "Customer Name" },
-        { "key": "lastName", "header": "Freidge" },
-        { "key": "email", "header": "Shipping Date" },
-        { "key": "department", "header": "Shipping Country" },
+        { "key": "id", "header": "ID" },
+        { "key": "firstName", "header": "First Name" },
+        { "key": "lastName", "header": "Last Name" },
+        { "key": "email", "header": "Email" },
+        { "key": "department", "header": "Department" },
         { "key": "status", "header": "Current Status" }
     ],
     "employees": [
@@ -161,6 +161,7 @@ function editCell(cellContent, key, employee) {
  
 // Function to save the edited value
 function saveEdit(cellContent, newValue, key, employee) {
+    if(newValue=="")return;
     cellContent.innerHTML = newValue; // Update the cell content
     employee[key] = newValue; // Update the employee data
 }
