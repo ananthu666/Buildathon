@@ -31,16 +31,25 @@
         <h2 class="mb-3">Employee Directory</h2>
         <div class="controls mb-3">
             <button class="btn btn-primary me-2" onclick="autoFitAll()">Auto-fit All Columns</button>
-            <button class="btn btn-secondary" onclick="resetColumns()">Reset Columns</button>
-        </div>
-        <div class="functionhead w-100 mb-2  justify-content-evenly align-items-center" style="height: 3rem;background-color: red; ">
-
+            <button class="btn btn-secondary me-2" onclick="resetColumns()">Reset Columns</button>
+            <button class="btn btn-success" onclick="addEmployee()">Add Employee</button>
+            <button class="btn btn-warning" onclick="editSelected()">Edit Selected</button>
+            <button class="btn btn-danger" onclick="deleteSelected()">Delete Selected</button>
         </div>
         <div class="table-container">
             <div class="resize-indicator"></div>
             <div class="table-responsive">
                 <table class="table table-striped table-hover" id="resizable-table">
-                    <thead class="table-secondary flex-r" >
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Select</th>
+                            <th>ID</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email Address</th>
+                            <th>Department</th>
+                            <th>Current Status</th>
+                        </tr>
                     </thead>
                     <tbody>
                     </tbody>
