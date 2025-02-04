@@ -866,7 +866,7 @@ function renderEmployeeTable(data,status1="status") {
             cellContent.textContent = employee[column.key];
             cellContent.className = 'cell-content';
             
-            cellContent.addEventListener('click', () => editCell(cellContent, column.key, employee));
+            cellContent.addEventListener('click', () => DT(cellContent, column.key, employee));
  
             if (column.key === status) {
                 cell.innerHTML = `<span class="badge" style="background-color:${Data.status[Data.bodyel[index][column.key]]}">${Data.bodyel[index][column.key]}</span>`;
@@ -1062,7 +1062,7 @@ function reloaddata(data) {
             const cellContent = document.createElement('div');
             cellContent.textContent = employee[column.key];
             cellContent.className = 'cell-content';
-            cellContent.addEventListener('click', () => editCell(cellContent, column.key, employee));
+            cellContent.addEventListener('click', () => DT(cellContent, column.key, employee));
  
             if (column.key === 'status') {
                 if (column.key === status) {
@@ -1114,7 +1114,7 @@ function reloaddata_filtered(employees) {
                 const cellContent = document.createElement('div');
                 cellContent.textContent = employee[column.key];
                 cellContent.className = 'cell-content';
-                cellContent.addEventListener('click', () => editCell(cellContent, column.key, employee));
+                cellContent.addEventListener('click', () => DT(cellContent, column.key, employee));
 
                 if (column.key === 'status') {
                     cell.innerHTML = `<span class="badge ${statusClass}">${employee[column.key]}</span>`;
@@ -1190,7 +1190,7 @@ function handleSort(column) {
  
 
 // Function to edit a cell
-function editCell(cellContent, key, employee) {
+function DT(cellContent, key, employee) {
     // if the edit button not enabled dot edit
     if (!document.getElementById('editButton').disabled) {
        return;
@@ -1262,7 +1262,7 @@ function addEmployee() {
             const cell = document.createElement('td');
             const div = document.createElement('div');
             div.className = 'cell-content';
-            div.setAttribute('onclick', `editCell(this, '${column.key}', {})`);
+            div.setAttribute('onclick', `DT(this, '${column.key}', {})`);
             div.textContent = column.header || ' ';
             cell.appendChild(div);
             newRow.appendChild(cell);
@@ -1464,7 +1464,8 @@ document.getElementById('addButton').addEventListener('click', function () {
 document.getElementById('updateButton').addEventListener('click', () => {
     editedCells.forEach(({ cellContent, input, key, employee }) => {
         const newValue = input.value;
-        newEntry[key] = newValue;
+        if(newEntry['id'])
+            newEntry[key] = newValue;
         saveEdit(cellContent, newValue, key, employee);
     });
     if (Object.keys(newEntry).length > 0) {

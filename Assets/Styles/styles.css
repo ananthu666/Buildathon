@@ -7,6 +7,7 @@
     overflow-x: auto;
     max-height: 80vh;
     max-width: 100%;
+    scrollbar-width: none;
 }
 
 .table {
@@ -202,3 +203,14 @@ i {
     width: 10%;
 }
 
+#navc{
+
+}
+/* add make flexdirection column on with 768px */
+
+@media (max-width: 960px) {
+    #navc{
+        overflow-x: scroll;
+        scrollbar-width: none;
+    }
+}
