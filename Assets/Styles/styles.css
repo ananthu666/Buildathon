@@ -7,7 +7,7 @@
     overflow-x: auto;
     max-height: 80vh;
     max-width: 100%;
-    scrollbar-width: none;
+    scrollbar-width: thin;
 }
 
 .table {
@@ -209,12 +209,7 @@ i {
 @media (max-width: 960px) {
     #navc{
         overflow-x: scroll;
-        scrollbar-width: none;
+        scrollbar-width: thin;
     }
 }
 
-@media (max-width: 582px) {
-    #navc{
-        flex-direction: column;
-    }
-}

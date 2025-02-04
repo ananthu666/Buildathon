@@ -701,12 +701,12 @@ const resizeIndicator = document.querySelector('.resize-indicator');
 let isResizing = false;
 let currentColumn = null;
 let startX, startWidth;
-let employeeId = 1;
+let DTId = 1;
  
  
  
-// Function to render the employee table
-function renderEmployeeTable(data,status1="status") {
+// Function to render the DT table
+function renderDTTable(data,status1="status") {
     const tableHead = document.querySelector('thead');
     tableHead.style.position = 'sticky';
     tableHead.style.top = '0';
@@ -783,14 +783,14 @@ function renderEmployeeTable(data,status1="status") {
 
             // If values are selected, filter and group
             if (selectedValues.length > 0) {
-                const filteredEmployees = Data.bodyel.filter(employee =>
-                    selectedValues.includes(String(employee[currentColumn.key]))
+                const filteredDTs = Data.bodyel.filter(DT =>
+                    selectedValues.includes(String(DT[currentColumn.key]))
                 );
 
-                reloaddata_filtered(filteredEmployees);
+                reloaddata_filtered(filteredDTs);
             } else {
                 // If no values selected, reload full data
-                renderEmployeeTable(Data);
+                renderDTTable(Data);
             }
         });
         sortIcon.onclick = () => {
@@ -828,7 +828,7 @@ function renderEmployeeTable(data,status1="status") {
     const tableBody = document.querySelector('tbody');
     tableBody.innerHTML = '';
  
-    data.bodyel.forEach(employee => {
+    data.bodyel.forEach(DT => {
         // const statusClass = {
         //     'Active': 'bg-success',
         //     'Inactive': 'bg-danger',
@@ -863,10 +863,10 @@ function renderEmployeeTable(data,status1="status") {
  
             // Create editable cell
             const cellContent = document.createElement('div');
-            cellContent.textContent = employee[column.key];
+            cellContent.textContent = DT[column.key];
             cellContent.className = 'cell-content';
             
-            cellContent.addEventListener('click', () => DT(cellContent, column.key, employee));
+            cellContent.addEventListener('click', () => editCell(cellContent, column.key, DT));
  
             if (column.key === status) {
                 cell.innerHTML = `<span class="badge" style="background-color:${Data.status[Data.bodyel[index][column.key]]}">${Data.bodyel[index][column.key]}</span>`;
@@ -881,8 +881,8 @@ function renderEmployeeTable(data,status1="status") {
         tableBody.appendChild(row);
     });
  
-    // Update employeeId to the next available ID
-    employeeId = data.bodyel.length > 0 ? Math.max(...data.bodyel.map(emp => emp.id)) + 1 : 1;
+    // Update DTId to the next available ID
+    DTId = data.bodyel.length > 0 ? Math.max(...data.bodyel.map(emp => emp.id)) + 1 : 1;
 }
 
 function handleFilter(column) {
@@ -1035,12 +1035,12 @@ function reloaddata(data) {
     tableBody.innerHTML = '';
  
     // This Additional functionality is not completed yet
-    data.bodyel.forEach(employee => {
+    data.bodyel.forEach(DT => {
         const statusClass = {
             'Active': 'bg-success',
             'Inactive': 'bg-danger',
             'On Leave': 'bg-warning text-dark'
-        }[employee.status];
+        }[DT.status];
  
         const row = document.createElement('tr');
  
@@ -1060,9 +1060,9 @@ function reloaddata(data) {
  
             // Create editable cell
             const cellContent = document.createElement('div');
-            cellContent.textContent = employee[column.key];
+            cellContent.textContent = DT[column.key];
             cellContent.className = 'cell-content';
-            cellContent.addEventListener('click', () => DT(cellContent, column.key, employee));
+            cellContent.addEventListener('click', () => editCell(cellContent, column.key, DT));
  
             if (column.key === 'status') {
                 if (column.key === status) {
@@ -1082,17 +1082,17 @@ function reloaddata(data) {
  
 //  function to sort column 
 
-function reloaddata_filtered(employees) {
+function reloaddata_filtered(DTs) {
     const tableBody = document.querySelector('tbody');
     tableBody.innerHTML = '';
 
-    if (employees && Array.isArray(employees)) {
-        employees.forEach(employee => {
+    if (DTs && Array.isArray(DTs)) {
+        DTs.forEach(DT => {
             const statusClass = {
                 'Active': 'bg-success',
                 'Inactive': 'bg-danger',
                 'On Leave': 'bg-warning text-dark'
-            }[employee.status];
+            }[DT.status];
 
             const row = document.createElement('tr');
 
@@ -1112,12 +1112,12 @@ function reloaddata_filtered(employees) {
 
                 // Create editable cell
                 const cellContent = document.createElement('div');
-                cellContent.textContent = employee[column.key];
+                cellContent.textContent = DT[column.key];
                 cellContent.className = 'cell-content';
-                cellContent.addEventListener('click', () => DT(cellContent, column.key, employee));
+                cellContent.addEventListener('click', () => editCell(cellContent, column.key, DT));
 
                 if (column.key === 'status') {
-                    cell.innerHTML = `<span class="badge ${statusClass}">${employee[column.key]}</span>`;
+                    cell.innerHTML = `<span class="badge ${statusClass}">${DT[column.key]}</span>`;
                 } else {
                     cell.appendChild(cellContent);
                 }
@@ -1144,7 +1144,7 @@ function groupBy(list, keyGetter) {
 }
 
 function group_keys(column) {
-    const grouped_by_name = groupBy(Data.bodyel, employee => employee[column.key]);
+    const grouped_by_name = groupBy(Data.bodyel, DT => DT[column.key]);
     // console.log(grouped_by_name);
     return grouped_by_name.keys();
 }
@@ -1184,13 +1184,13 @@ function handleSort(column) {
         return direction === 'asc' ? comparisonResult : -comparisonResult;
     });
  
-    // console.log(Data.employees);
+    // console.log(Data.DTs);
     reloaddata(Data);
 }
  
 
 // Function to edit a cell
-function DT(cellContent, key, employee) {
+function editCell(cellContent, key, DT) {
     // if the edit button not enabled dot edit
     if (!document.getElementById('editButton').disabled) {
        return;
@@ -1201,21 +1201,21 @@ function DT(cellContent, key, employee) {
     cellContent.innerHTML = ''; // Clear the cell content
     cellContent.appendChild(input);
     input.focus();
-    editedCells.push({ cellContent, input, key, employee }); // Track the edited cell
+    editedCells.push({ cellContent, input, key, DT }); // Track the edited cell
 
     // Listen for "Enter" key to save changes
     input.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
-            saveEdit(cellContent, input.value, key, employee);
+            saveEdit(cellContent, input.value, key, DT);
         }
     });
 }
  
 // Function to save the edited value
-function saveEdit(cellContent, newValue, key, employee) {
+function saveEdit(cellContent, newValue, key, DT) {
     if (newValue.trim() === "") return; // Do not save empty values
     cellContent.innerHTML = newValue; // Update the cell content
-    employee[key] = newValue; // Update the employee data
+    DT[key] = newValue; // Update the DT data
     
     toggleButtons('update');
     // append to main data
@@ -1234,7 +1234,7 @@ function updateButtonState() {
 }
 // made to add new row to main data
 var newEntry = {};
-function addEmployee() {
+function addDT() {
 
     const tableBody = document.querySelector('#resizable-table tbody');
     const newRow = document.createElement('tr');
@@ -1251,7 +1251,7 @@ function addEmployee() {
     
     // Add ID cell
     const idCell = document.createElement('th');
-    idCell.textContent = employeeId++;
+    idCell.textContent = DTId++;
     newRow.appendChild(idCell);
     newEntry={};
     newEntry.id =parseInt( idCell.textContent);
@@ -1262,7 +1262,7 @@ function addEmployee() {
             const cell = document.createElement('td');
             const div = document.createElement('div');
             div.className = 'cell-content';
-            div.setAttribute('onclick', `DT(this, '${column.key}', {})`);
+            div.setAttribute('onclick', `editCell(this, '${column.key}', {})`);
             div.textContent = column.header || ' ';
             cell.appendChild(div);
             newRow.appendChild(cell);
@@ -1273,9 +1273,9 @@ function addEmployee() {
     tableBody.appendChild(newRow);
 }
  
-// Initial rendering of the employee table
+// Initial rendering of the DT table
 document.addEventListener('DOMContentLoaded', () => {
-    renderEmployeeTable(Data);
+    renderDTTable(Data);
     autoFitAll();
 });
  
@@ -1371,7 +1371,7 @@ function handleDoubleClick(e) {
 }
  
 document.addEventListener('DOMContentLoaded', () => {
-    renderEmployeeTable(Data);
+    renderDTTable(Data);
     autoFitAll();
 });
 
@@ -1394,14 +1394,14 @@ function deleteSelected() {
         return parseInt(idCell.textContent);
     });
 
-    // Filter out employees with selected IDs
+    // Filter out DTs with selected IDs
     Data.bodyel = Data.bodyel.filter(
-        employee => !selectedIds.includes(employee.id)
+        DT => !selectedIds.includes(DT.id)
     );
     
     // update the main data here
     // console.log("+++++++++++++++++++++",Data.bodyel);
-    renderEmployeeTable(Data);
+    renderDTTable(Data);
     
     // Reset button states
     toggleButtons('delete');
@@ -1455,22 +1455,22 @@ function toggleButtons(action) {
 let editedCells = [];
 
 document.getElementById('addButton').addEventListener('click', function () {
-    addEmployee();
+    addDT();
     
     
     toggleButtons('add'); // Disable Add, Edit, Delete and enable Update, Cancel
 });
 
 document.getElementById('updateButton').addEventListener('click', () => {
-    editedCells.forEach(({ cellContent, input, key, employee }) => {
+    editedCells.forEach(({ cellContent, input, key, DT }) => {
         const newValue = input.value;
         if(newEntry['id'])
             newEntry[key] = newValue;
-        saveEdit(cellContent, newValue, key, employee);
+        saveEdit(cellContent, newValue, key, DT);
     });
     if (Object.keys(newEntry).length > 0) {
         Data.bodyel.push(newEntry);
-        renderEmployeeTable(Data);
+        renderDTTable(Data);
         newEntry = {};
     }
     editedCells = []; // Clear the edited cells after update
